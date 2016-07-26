@@ -1,6 +1,6 @@
 # Hostview Web 
 
-Hostview Web is [Sails](http://sailsjs.org/) app that provides the web frontend (user data visualization) for Hostview. In addition, it serves few REST API functions for the Hostview clients (software updates + public IP geolocation).
+Hostview Web is [Sails](http://sailsjs.org/) app that provides the web frontend (user data visualization) for Hostview study. In addition, it serves few REST API functions for the Hostview clients (software updates + public IP geolocation).
 
 
 ## Deployment
@@ -45,4 +45,3 @@ To see more information about running apps + logs, do
     sudo -u nodeapp pm2 logs
 
 The pm2 app logs are rotated by the logrotate daemon (see, /etc/logrotate.d/pm2-nodeapp).
-

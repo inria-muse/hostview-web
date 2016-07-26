@@ -12,8 +12,9 @@ ADD app/package.json /tmp/package.json
 RUN cd /tmp && npm install
 
 # create and populate the main app folder
-RUN mkdir /app && cp -a /tmp/node_modules /app && chown nodeuser:nodeuser /app
+RUN mkdir /app && cp -a /tmp/node_modules /app
 COPY app /app
+RUN chown -R nodeuser:nodeuser /app
 
 ENV NODE_ENV production
 

@@ -4,6 +4,8 @@ services:
   web:
     build: .
     image: hostview/web
+    ports:
+     - "1337:1337"
     volumes:
      - ./app:/app
      - /app/node_modules
@@ -12,8 +14,7 @@ services:
     networks:
       - backtier
     environment:
-     NODE_ENV: producation
-     DEBUG: hostview
+     NODE_ENV: production
      HOSTVIEW_REDIS: redis://redis:6379
      HOSTVIEW_DB:
 

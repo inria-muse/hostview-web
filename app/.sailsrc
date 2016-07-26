@@ -1,0 +1,15 @@
+{
+  "generators": {
+    "modules": {}
+  },
+  "hooks": {
+    "pubsub" : false,
+    "sockets": false,
+    "i18n": false,
+    "blueprints": false,
+    "cors": false
+  },
+  "paths": {
+    "public": "assets"
+  }
+}
