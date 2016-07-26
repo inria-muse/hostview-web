@@ -1,0 +1,21 @@
+{
+  "apps" : [{
+    "name"         : "hostviewweb",
+    "script"       : "app.js",
+    "instances"    : "1",
+    "exec_mode"    : "cluster_mode",
+    "error_file"   : "/home/nodeapp/logs/hostviewweb.log",
+    "out_file"     : "/home/nodeapp/logs/hostviewweb.log",
+    "pid_file"     : "/home/nodeapp/pids/hostviewweb",
+    "run_as_user"  : "nodeapp",
+    "run_as_group" : "nodeapp",
+    "cwd"          : "/home/nodeapp/apps/hostviewweb",
+    "env": {
+        "NODE_ENV" : "production",
+        "PORT"     : "3101",
+        "DEBUG"    : "hostview",
+        "HOSTVIEW_REDIS": "redis://localhost:6379",
+        "HOSTVIEW_DB": ""
+    }
+  }]
+}
