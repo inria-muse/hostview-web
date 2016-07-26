@@ -1,74 +1,168 @@
-<!-- Default home page -->
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600' rel='stylesheet' type='text/css'>
-<style>
-  /* Styles included inline since you'll probably be deleting this page anyway */
-  html,body{text-align:left;font-size:1em}html,body,img,form,textarea,input,fieldset,div,p,div,ul,li,ol,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,code{margin:0;padding:0}ul,li{list-style:none}img{display:block}a img{border:0}a{text-decoration:none;font-weight:normal;font-family:inherit}*:active,*:focus{outline:0;-moz-outline-style:none}h1,h2,h3,h4,h5,h6{font-weight:normal}div.clear{clear:both}.clearfix:after{clear:both;content:".";display:block;font-size:0;height:0;line-height:0;visibility:hidden}body{font-family:"Open Sans",Arial,sans-serif;font-weight:300;}.top-bar {width: 100%; background-color: #e4f0f1; padding: 15px 0;}.top-bar .container img {float: left;}.top-bar .container ul {float: right; padding-top: 25px;}.top-bar .container li {float: left; width: 125px; text-align: center; font-size: 15px; color:#000; font-weight: 600;}.top-bar .container a li:hover {color: #118798; -webkit-transition:color 200ms; -moz-transition:color 200ms; -o-transition:color 200ms;transition:color 200ms;}.container{width: 80%; max-width: 1200px; margin: auto;}div.header {-webkit-transition: 6s; -moz-transition: 6s; -o-transition: 6s;transition: 6s; background: rgba(4, 36, 41, 0.89) url(http://sailsjs.org/images/img_sailsShadow.png) no-repeat 42% bottom; padding: 100px 0 65px;}.header h1#main-title{color: #fff; font-weight: 300; font-size: 2.5em;}.header h3{color: #b1eef7; font-style: italic; font-weight: 300;}.header h3 code{font-style: normal!important; background-color: rgba(255,255,255,0.5); font-weight: 300; color:#0e6471; margin: 0px 5px;}div.main.container{padding: 50px 0;}h1 {color: #118798; font-weight: 300;}code {font-size: inherit; font-family: 'Consolas', 'Monaco', monospace; padding:4px 5px 1px; background-color: #f3f5f7}a{color: #118798; font-weight: 300; text-decoration: underline;}a:hover {color: #0e6471; -webkit-transition:color 200ms; -moz-transition:color 200ms; -o-transition:color 200ms;transition:color 200ms;}p{line-height: 1.5em;}blockquote{background-color: #e4f0f1; padding: 25px; line-height: 1.5em; margin: 15px 0;}blockquote span{font-weight: 600; padding-right: 5px;}ul.getting-started{padding: 25px 75px 25px 0; width: 70%; float: left; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;}ul.getting-started li{padding: 25px 0;}ul.getting-started li h3 {padding-bottom: 10px; font-size: 25px; font-weight: 300;}.sprite{background:url(http://sailsjs.org/images/newapp.sprite.png) no-repeat; position: absolute; left: 0; top:0;}.getting-started .sprite{margin-left:10px;padding-left:60px;height:42px;width:0; float: left;}.getting-started .one{background-position:0 0}.getting-started .two{background-position:0 -42px}.getting-started .three{background-position:0 -83px}div.step {position: relative; padding-left: 70px; opacity: 0.9;}div.step:hover{ opacity: 1;}div.links {float: left; width: 30%; max-width: 325px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; background-color: #f3f5f7; border: 1px solid #ebebeb; padding: 25px 45px 35px;}div.links h3 {color: #727272; text-align: center; font-size: 28px; font-weight: 300;}div.links h4 {color: #727272; font-size: 17px; font-weight: 600; padding: 15px 0 10px;}div.links .link-list a {text-decoration: none; font-weight: 400;}div.links .link-list a li {padding: 0px 0px 5px 10px;}div.default-page{min-width: 1200px;}.pocket{display:none;}
-</style>
-<script type="text/javascript">
-setTimeout(function sunrise () {
-  document.getElementsByClassName('header')[0].style.backgroundColor = '#118798';
-}, 0);
-</script>
+ <div class="section main" id="main">
+   <div class="container">
+     <div class="row">
+       <div class="eight columns">
 
-<div class="default-page">
-  <div class="header">
-    <h1 id="main-title" class="container"><%= __('A brand new app.') %></h1>
-    <h3 class="container">You're looking at: <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
-  </div>
-  <div class="main container clearfix">
-    <!-- <h1>Getting started</h1>
-    <p>Don't worry, we've got your back.</p> -->
-    <ul class="getting-started">
-      <li class="clearfix">
-        <div class="step">
-          <div class="sprite one"></div>
-          <h3>Generate a REST API.</h3>
-          <p>
-            Run <code>sails generate api user</code>.  This will create two files: a <a href="http://sailsjs.org/#!/documentation/concepts/ORM/Models.html">model</a> <code class="pocket">api/models/User.js</code> and a <a href="http://sailsjs.org/#!/documentation/concepts/Controllers">controller</a><code class="pocket">api/controllers/UserController.js</code>.
-          </p>
-        </div>
-      </li>
-      <li class="clearfix">
-        <div class="step">
-          <div class="sprite two"></div>
-          <h3>
-            Lift your app.
-          </h3>
-          <p>
-            Run <code>sails lift</code> to start up your app server.  If you visit <a target="_blank" href="http://localhost:<%= sails.config.port || 1337%>/user"><code>http://localhost:<%= sails.config.port || 1337%>/user</code></a> in your browser, you'll see a <a href="http://sailsjs.org/#!/documentation/reference/blueprint-api">WebSocket-compatible</a> user API.
-          </p>
-        </div>
-      </li>
-      <li class="clearfix">
-        <div class="step">
-          <div class="sprite three"></div>
-          <h3>
-            Dive in.
-          </h3>
-          <p>Blueprints are just the beginning.  You'll probably also want to learn how to customize your app's <a href="http://sailsjs.org/#!/documentation/concepts/Routes">routes</a>, set up <a href="http://sailsjs.org/#!/documentation/concepts/Policies">security policies</a>, configure your <a href="http://sailsjs.org/#!/documentation/reference/sails.config/sails.config.connections.html">data sources</a>, and build custom <a target="_blank" href="http://sailsjs.org/#!/documentation/concepts/Controllers?q=actions">controller actions</a>. For more help getting started, check out the links on this page.</p>
+         <h2 class="main-heading">HostView Study</h2>
 
-        </div>
-      </li>
-    </ul>
-    <div class="links">
-      <!-- <h3>Links</h3> -->
-      <ul class="link-list">
+         <h5>
+           HostView is a data collection tool for helping our research on people's online activities, content consumption patterns and perceived Quality of Experience (QoE).
+         </h5>
+         <a class="button button-primary" href="#goals">Tell me more !</a>
+       </div>
 
-        <h4>Docs</h4>
-        <a target="_blank" href="http://sailsjs.org/#!/documentation/anatomy/myApp"><li>App Structure</li></a>
-        <a target="_blank" href="http://sailsjs.org/#!/documentation/reference"><li>Reference</li></a>
-        <a target="_blank" href="http://sailsjs.org/#!/documentation/concepts/extending-sails/Adapters/adapterList.html"><li>Supported Databases</li></a>
+       <div class="four columns logos">
+         <a href="#contacts"><img class="logo" src="images/inrialogo.png"></a>
+         <a href="#contacts"><img class="logo" src="images/nottinghamlogo.png"></a>
+         <a href="#contacts"><img class="logo" src="images/ucnlogo.png"></a>
+       </div>
+     </div>
+   </div>
+ </div>
 
-        <h4>Tutorials</h4>
-        <a target="_blank" href="https://github.com/sails101"><li>Sails 101</li></a>
+ <div class="section goals" id="goals">
+   <div class="container">
+     <div class="row">
+       <h2 class="main-heading">Research Questions</h2>
+       <h5 class="goal-heading">Privacy</h5>
+       <p class="goal-description">
+         The fundamental research theme of the UCN project is user data privacy and how can we provide advanced content recommendation and delivery services while quaranteeing privacy and keeping users in control of their personal data.
+       </p>
+     </div>
+     <div class="row">
+       <div class="one-third column value">
+         <h2 class="goal-multiplier">What?</h2>
+         <h5 class="goal-heading">Recommendations</h5>
+         <p class="goal-description">There is a staggering amount of online content available today on the Internet and finding relevant and interesting content is a daunting task. We seek to build improved content recommendation mechanisms with better knowledge about user’s needs and interests by incorporating various additional explicit and implicit signals originated by the user -- history, habits, mood, location, preferences and so on.</p>
+       </div>
+       <div class="one-third column value">
+         <h2 class="goal-multiplier">When? Where?</h2>
+         <h5 class="goal-heading">Context Awareness</h5>
+         <p class="goal-description">We own today a multiplicity of networked devices (smartphones, tablets, notebooks, etc.), each requiring different encodings, resolutions, and so on. Furthermore, the manner of accessing the network also changes with time and space (e.g., transition from WiFi to 3G), which introduces additional complexity to the content delivery process.</p>
+       </div>
+       <div class="one-third column value">
+         <h2 class="goal-multiplier">How?</h2>
+         <h5 class="goal-heading">Quality of Experience</h5>
+         <p class="goal-description">Understanding and improving the user perceived quality of online content delivery is a complex task. How to collect user QoE and relate it to the correct contextual information? How to optimize the content delivery from the Internet based on user context? How to optimize local networking resources according to user context and preferences?
+         </p>
+       </div>
+     </div>
+     <div class="row">
+       <a class="button button-primary" href="#join">Cool, how can I help ?</a>
+     </div>
+   </div>
+ </div>
 
-        <h4>Community</h4>
-        <a target="_blank" href="http://stackoverflow.com/search?q=sails.js"><li>StackOverFlow</li></a>
-        <a target="_blank" href="https://github.com/balderdashy/sails"><li>GitHub</li></a>
-        <a target="_blank" href="https://groups.google.com/forum/#!forum/sailsjs"><li>Google Group</li></a>
-        <a target="_blank" href="http://webchat.freenode.net/"><li>IRC (#sailsjs on freenode)</li></a>
+ <div class="section join" id="join">
+   <div class="container">
+     <div class="row">
+       <h2 class="main-heading">Participate to UCN Study</h2>
+       <h5>by contributing data on your online activities and network performance</h5>
+     </div>
+     <div class="row">
+       <a class="button" href="hostviewinstaller.exe">
+         HostView for Windows
+       </a>
+       <a class="button" href="hostview.apk">
+         HostView for Android
+       </a>
+     </div>
+     <div class="row">
+       <p class="join-section-description">
+         Hostview is a small data collection tool that we have developed for the UCN study. It runs on your device on the background and collects data on your activities (device and screen states, running applications, foreground window, visited URLs, presence of mouse, keyboard, audio or video events) and raw system performance data (cpu, memory, network traffic). Few times a day, it will ask you to indicate your current activity and rate the performance of your system. The tool is designed to consume little system resources and data uploads are scheduled only when there is little other traffic. You can pause the data collection at anytime. You can also visualize your data on our website in order to get more insight into your online activities, content consumption and delivery performance. We hope you will install Hostview at least for three months, after which it will prompt you to uninstall (unless you decide to keep running it!).
+       </p>
+     </div>
+     <div class="row">
+       <a class="button button-primary" href="#install">Instructions</a>
+     </div>
+   </div>
+ </div>
 
-      </ul>
-    </div>
-  </div>
-</div>
+
+ <div class="section" id="install">
+   <div class="container">
+     <div class="row">
+       <h2 class="main-heading">Instructions</h2>
+       <div class="row">
+         <a class="button" href="hostviewinstaller.exe">
+           HostView for Windows
+         </a>
+         <a class="button" href="hostview.apk">
+           HostView for Android
+         </a>
+       </div>
+       <p class="section-description">
+         <ul>
+           <li>Download the data collection software (only available for Windows and xxx).</li>
+           <li>Double-click on the installer on your device.</li>
+           <li>Read and accept the participation consent form presented by the installer.</li>
+           <li>Select a password to access your personal data visualizations on our website.</li>
+           <li>Upon completion, the data collection will start automatically on the background.</li>
+           <li>You can access the pause button and link to the data visualizations via the application icon on the systray (windows) or xxx.</li>
+           <li>Three times a day, Hostview will pop-up a short questionnaire. Filling it will provide us with hard-to-measure user feedback !</li>
+         </ul>
+       </p>
+     </div>
+     <div class="row">
+       <a class="button button-primary" href="#privacy">Data Protection and Privacy</a>
+     </div>      
+   </div>
+ </div>  
+
+
+ <div class="section" id="privacy">
+   <div class="container">
+     <div class="row">
+       <h2 class="main-heading">Data Protection and Privacy</h2>
+       <p class="section-description">
+         We have taken several measures to protect your data and privacy:
+         <ul>
+           <li><strong>Uploads:</strong> data is always uploaded over encrypted network connection.</li>
+           <li><strong>Servers:</strong> data is stored on our secure servers at Inria facility in France.</li>
+           <li><strong>Access:</strong> only researchers working on the project have access to the raw data. We do not share your data to 3rd parties.</li>
+           <li><strong>Privacy policy:</strong> UCN study has been declared to the french data protection authority, Commission for Informatics and Liberties 
+             (CNIL), and is subject to the following legislation:
+             <blockquote>
+               In accordance with Article 34-38, Law N ° 78-17 "Data processing and
+               Freedoms" of January 6, 1978, as amended by the Act of 6 August 2004, and 
+               a right to rectification and removal (Article 36) of personal data, participants can request rectify, complete, clarify, update or delete information about them that is inaccurate, incomplete, outdated, or that the use, communication or storage is prohibited. Participants can at any time exercise this right by contacting us by e-mail at "muse.ucnstudy [at] inria.fr".          
+             </blockquote>          
+           </li>
+         </ul>
+
+       </p>
+     </div>
+     <div class="row">
+       <a class="button button-primary" href="#contacts">More Questions ?</a>
+     </div>      
+   </div>
+ </div>
+
+
+ <div class="section main" id="contacts">
+   <div class="container">
+     <div class="row">
+       <div class="eight columns">
+
+         <h2 class="main-heading">Contacts</h2>
+
+         <h5>
+           UCN study is funded by the European Commission within the <a target='_blank' href='http://www.usercentricnetworking.eu'>UCN project</a> and it is joint work between Inria Paris-Rocquencourt (France) and University of Nottingham (UK).
+         </h5>
+         <a class="button" href="mailto:muse.ucnstudyATinria.fr">
+           send us email
+         </a>
+       </div>
+
+       <div class="four columns logos">
+         <a target='_blank' href="http://www.inria.fr"><img class="logo" src="images/inrialogo.png"></a>
+         <a target='_blank' href="http://www.nottingham.ac.uk"><img class="logo" src="images/nottinghamlogo.png"></a>
+         <a target='_blank' href="http://www.usercentricnetworking.eu"><img class="logo" src="images/ucnlogo.png"></a>
+         <a class="button button-primary" href="#main">Back to top</a>
+       </div>
+     </div>
+     <div class="row">
+     </div>            
+   </div>
+ </div>
+

@@ -13,7 +13,6 @@
     "env": {
         "NODE_ENV" : "production",
         "PORT"     : "3101",
-        "DEBUG"    : "hostview",
         "HOSTVIEW_REDIS": "redis://localhost:6379",
         "HOSTVIEW_DB": ""
     }

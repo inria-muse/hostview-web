@@ -21,10 +21,6 @@ To get a shell access to the app container (will not start the app) with data mo
 
     docker run --rm -it hostview/web /bin/bash
 
-To mount the app source (excluding installed dependencies in node_modules on the image)volume on the host for faster debugging and development, do:
-
-    docker run --rm -it -v $PWD/app:/app -v /app/node_modules -e DEBUG=hostivew -e NODE_ENV=development -p 1337:1337 hostview/web 
-
 
 ### Production
 
