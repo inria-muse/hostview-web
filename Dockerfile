@@ -1,11 +1,14 @@
 # current stable LTS on top of debian image
-FROM node:4.4.7-wheezy
+FROM node:4.5.0-wheezy
 
 # create non-root user account
 RUN groupadd -r nodeuser && useradd -r -g nodeuser nodeuser
 
 # add global node stuff
 RUN npm install -g sails@0.12.3
+RUN npm install pg
+RUN npm install --save buffer-alloc
+#RUN npm i -S sails-hook-cb-async-controller
 
 # install node modules to tmp to create a layer with dependencies installed
 ADD app/package.json /tmp/package.json
