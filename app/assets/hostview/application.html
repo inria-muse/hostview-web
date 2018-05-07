@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/jquery.qtip.min.css" />
+	<!--D3 style sheet by D3 creator (not necessary)-->
+	<link type="text/css" href="js/d3_style.css" rel="stylesheet" />
+	<link href="css/common_styles.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="js/nv.d3.css" rel="stylesheet" type="text/css">
+	
+	<script src="js/D3.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/nv.d3.js"></script>
+    <script src="js/stream_layers.js"></script>
+	<script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
+	<script src="js/jquery.qtip.min.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	<!--bootstrap and moment.js-->
+	<!--<script type="text/javascript" src="https://muse.inria.fr/hostview-dev/js/moment.min.js"></script>-->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/moment.min.js"></script>
+	<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<style type="text/css">
+	.nvd3 .nv-x .nv-axis .nv-axislabel {
+		font-weight:bold;
+	}
+	.nvd3 .nv-y .nv-axis .nv-axislabel {
+		font-weight:bold;
+	}
+	.selection {
+		text-align:center;
+		font-size:12px;
+	}
+	#pie1 {
+		text-align:center;
+	}
+	</style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="dashboard_draft.html">Hostview</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="dashboard_draft.html"><i class="fa fa-fw fa-dashboard"></i> My dashboard</a>
+                    </li>
+					<li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-bar-chart"></i> Details <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li class="active">
+                                <a href="application.html"><i class="fa fa-fw fa-desktop"></i> Applications</a>
+                            </li>
+                            <li>
+                                <a href="usage.html"><i class="fa fa-fw fa-clock-o"></i> Device Activity</a>
+                            </li>
+							<li>
+                                <a href="networks.html"><i class="fa fa-fw fa-wifi"></i> Networks</a>
+                            </li>
+							<li>
+                                <a href="traffic_summary.html"><i class="fa fa-fw fa-sliders"></i> Traffic Statistics</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Application Interaction
+                            <!--<small>Subheading</small>-->
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="dashboard_draft.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-desktop"></i> Applications
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-primary">
+							<div class="panel-heading" title="apps">
+								<h3 class="panel-title"><i class="fa fa-desktop"></i> Applications Interacted with
+								<div class="pull-right"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i><span class="large-time"></span><span class="short-time"></span><b class="caret"></b></div>
+								</h3>
+							</div>
+							<div class="panel-body" id="pie1_panel">
+								<form>
+										<select class="selection">
+											<option value="select" selected="selected">Select One</option>
+										</select> 
+								</form>
+								<div class="flot-chart" id="pie1_container">
+									<div class="flot-chart-content" id="pie1">
+										
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+				</div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <!--<script src="js/jquery.js"></script>-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <!--<script src="js/bootstrap.min.js"></script>-->
+	<script type="text/javascript">
+        var dbURL = "http://localhost:1337/"; //todo put it in config file or env ...
+
+	
+		Number.prototype.toFixedDown = function(digits) {
+			var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
+				m = this.toString().match(re);
+			return m ? parseFloat(m[1]) : this.valueOf();
+		};
+		// Tooltip
+		$('[title="apps"]').qtip({
+			content:{
+				text:'Applications that were actively interacted with in the Foreground'
+			},
+			suppress: false,
+			prerender: true,
+			position: {
+				my: 'bottom center',
+				at:'top center',
+				target: 'mouse'
+			},
+			style:{
+				classes:'qtip-dark qtip-bootstrap'
+			}
+		});
+		//Time Formatting
+		function formatTime(d) {
+			var s='';
+			var day = 60*60*24;
+			var hour = 60*60;
+			var minute = 60;
+				//console.log(d);
+			if(d/day>1){
+				s = s + Math.floor(d/day) + " Days";
+				d = d - Math.floor(d/day)*day;
+			} 
+			if(d/hour>1){
+				s = s + " " + Math.floor(d/hour) + " Hours";
+				d = d - Math.floor(d/hour)*hour;
+			}
+			if(d/minute>1){
+				s = s + " " + Math.floor(d/minute) + " Minutes";
+				d = d - Math.floor(d/minute)*minute;
+			}
+			// round seconds to 2 decimal places using toFixedDown	
+			if(d > 0) {
+				s = s + " " + d.toFixedDown(2) + " Seconds";
+			}
+			return s;
+		
+		};
+		// sorting function
+		function dynamicSort(property) {
+			var sortOrder = 1;
+			if(property[0] === "-") {
+				sortOrder = -1;
+				property = property.substr(1);
+			}
+			return function (a,b) {
+				var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+				return result * sortOrder;
+			}
+		}
+		
+		// function to add minutes
+		function addMinutes(date, minutes) {
+				return new Date(date.getTime() + minutes*60000);
+		};
+		
+		$(function() {
+
+			
+			// Pre-populate the daterange field with last 7 days interval.
+			//$('.pull-right .large-time').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+			function cb(start, end, label) {
+			  console.log("New date range selected: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + " (predefined range: " + label + ")");
+			  $('.pull-right .large-time').html(" "+start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY')+" ");
+			  console.log(start._d);
+			  console.log(end._d);
+			  start._d.setHours(00);
+			  start._d.setMinutes(00);
+			  start._d.setSeconds(00);
+			  end._d.setHours(23);
+			  end._d.setMinutes(59);
+			  end._d.setSeconds(59);
+			  console.log("new start",start._d);
+			  console.log("new end",end._d);
+			  // call Alt_bins and send the start and end time to create bins of appropriate size (based on interval).
+			  //Alt_bins(start._d, end._d);
+			};
+			
+			cb(moment().subtract(6, 'days'), moment());
+			
+			$('.pull-right').daterangepicker({
+				"linkedCalendars": false,
+				"alwaysShowCalendars": true,
+				"startDate": moment().subtract(6, 'days'),
+				"endDate": moment(),
+				"minDate": "01/01/2016",
+				"maxDate": "06/31/2016",
+				ranges: {
+				   'Today': [moment(), moment()],
+				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				   'This Month': [moment().startOf('month'), moment().endOf('month')],
+				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				}
+			}, cb);
+			
+			$('.pull-right').on('apply.daterangepicker', function(ev, picker) {
+			  window.picker=picker;
+			  console.log(picker.startDate.format('YYYY-MM-DD'));
+			  console.log(picker.endDate.format('YYYY-MM-DD'));
+			  console.log(picker.startDate._d);
+			  console.log(picker.endDate._d);
+			  $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+			  //console.log($(this));
+			  //Alt_bins(picker.startDate._d, picker.endDate._d);
+			});
+			
+			$('.pull-right').on('cancel.daterangepicker', function(ev, picker) {
+				  $(this).val('');
+			});
+		
+			var bins=[];
+          
+			var format = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
+			var format2 = d3.time.format("%Y/%m/%d");
+			var format3 = d3.time.format("%Y-%m-%dT%H:%M:%S");
+			var global_data;
+			
+			function Alt_bins(start,end){
+				//var picker = window.picker;
+				//var start = picker.startDate._d;
+				//var end = picker.endDate._d;
+				var altbins=[];
+				console.log("Alternate Bins Creation Start!");
+				console.log("start",start);
+				console.log("end", end);
+				var startDate = start;
+				var endDate = end;
+				var bin_start = startDate;
+				var duration = Math.round(((endDate.getTime() - startDate.getTime())/1000)/3600); // subtract start from end to get duration in msec
+				// convert duration to hours and round off. 
+				console.log(duration);
+				if (duration <=24) {
+					var bin_size = 1;
+				} else {
+					var bin_size = Math.round(duration / 80);
+				}
+				console.log(bin_size);
+				var bin_end = addMinutes(bin_start, (60*bin_size));
+				altbins.push({
+					binStart:bin_start,
+					binEnd:bin_end,
+					value:0
+				});
+				while (bin_end.getTime() <= endDate.getTime()){
+					bin_start = bin_end;
+					bin_end = addMinutes(bin_start, (60*bin_size));
+					altbins.push({
+						binStart:bin_start,
+						binEnd:bin_end,
+						value:0
+					});
+					
+				};
+				console.log("alternate bins",altbins);
+				window.altbins=altbins;
+			};
+			
+			function LoadData(){
+				//var e_bins;
+          //application todo_gg
+				//d3.json('offline_data/Applications_data/allApps_timeseries1.json', function (data){
+                d3.json(dbURL+'application', function (data){
+
+					window.data=data;
+					// temporary variables first / last_date to create bins of appropriate size based on time interval.
+					// in live graph, we will use the daterange callback function to send the start/end interval to Alt_bins function.
+					var first_date;
+					var last_date;
+					//bins.key='';
+					//bins.values=[];
+					data.forEach(function(d,i){
+						//console.log(d);
+						//console.log(format.parse(d.time));
+						if (i==0) {
+							//console.log(i);
+							first_date = format.parse(d.time);
+							console.log("first date", first_date);
+						}
+						else if (i==data.length-1) {
+							//console.log(i);
+							last_date = format.parse(d.time);
+							console.log("last date", last_date);
+						}
+						var startDate=format3.parse(d.time);
+						//var endDate=format.parse(d.end);
+						//console.log(startDate);
+						var time_in_minutes = Math.floor((startDate.getTime()/1000)/60);
+						var time_in_bin=(Math.floor(time_in_minutes/60))*60;
+						var bin_start = new Date(time_in_bin*60*1000);
+						var bin_end = addMinutes(bin_start, 60);
+						//var endDate=format.parse(d.end);
+						var year = startDate.getFullYear();
+						var month = startDate.getMonth()+1;
+						var day = startDate.getDate();
+						var hour=startDate.getHours();
+						//var minute=startDate.getMinutes();
+						//var second=startDate.getSeconds();
+						var d1=year+"/"+month+"/"+day;
+						//d1=format2.parse(d1);
+						
+						bins.push({
+							binStart:bin_start,
+							binEnd:bin_end,
+							value:0,
+							day:d1
+						});
+						
+					});
+					//console.log(bins);
+					// setting the first_date time to 00:00:00
+					first_date.setHours(00);
+					first_date.setMinutes(00);
+					first_date.setSeconds(00);
+					last_date.setDate(31);
+					//last_date.setMonth(03);
+					// setting the last date time to 23:59:59 just like daterangepicker does by default.
+					last_date.setHours(23);
+					last_date.setMinutes(59);
+					last_date.setSeconds(59);
+					// remove duplicates from bins array
+					function Compjects(a,b){
+						 return a.binStart.getTime()===b.binStart.getTime() && a.binEnd.getTime()===b.binEnd.getTime();
+					}
+					var new_bins=_.uniqWith(bins, Compjects);
+					console.log("Unique Bins Created!")
+					console.log("uniq_bins", new_bins);
+					//global_bins=new_bins;
+					//empty_bins=new_bins;
+					
+					window.new_bins = new_bins;
+					populateSelect(data);
+					console.log("Data Loaded");
+					Alt_bins(first_date, last_date);
+				});
+
+			};
+			
+				function populateSelect(data){
+					//console.log(data);
+					console.log("Populating Select Box");
+					data.sort(dynamicSort("name"));
+					var names =[];
+					for (i=0;i<data.length;i++){
+						if (names.indexOf(data[i].name)== -1){
+							names[i]=data[i].name;
+						}
+					}
+					console.log(names);
+					var uniq = names.reduce(function(a,b){
+						if (a.indexOf(b) < 0 ) a.push(b);
+						return a;
+					  },[]);
+					console.log("unique", uniq);
+					//console.log(uniq[5]);
+					var objects=[];
+					//objects.key='';
+					//objects.value=0.0;
+					for (i=0;i<uniq.length;i++){
+						objects.push({
+							key:uniq[i],
+							value:0,
+							datapoints:0
+						});		
+					}
+					console.log(objects);
+					console.log(objects[0].key);
+					console.log(objects.length);
+					//var datapointnumber=0;
+					//console.log(d);
+					//var name = d.name.replace(/.exe/i,"");
+					//var name = d.name;
+					//objects.key=d.name;
+					for (j=0;j<objects.length;j++){
+						data.forEach(function(d,i){
+							var name = String(objects[j].key);
+							//console.log(name); //works fine - I can enumerate all the keys.
+							if (d.name==name) {
+								objects[j].datapoints++;
+								objects[j].value+=d.value;
+								objects[j].value=objects[j].value.toFixedDown(3);
+							};
+						});
+					}
+					console.log(objects);
+					$.each(objects, function(i, obj) {
+						if (obj.value>120.0 && obj.datapoints>=5) {
+							$('.selection').append($('<option>').text(obj.key).attr('value', obj.key));
+						}
+					});
+				
+				};
+				
+				function BuildObj(data, app) {
+					console.log("Building Application");
+					console.log("application =", app);
+					var obj1={};
+					obj1.key=app;
+					obj1.values=[];
+					data.forEach(function(d,i){
+						//console.log(d);
+						//var name = d.name.replace(/.exe/i,"");
+						var name = d.name;
+						if (name==app.toLowerCase()){
+							//chrome.key=d.name;
+							//chrome.values=[];
+							obj1.values.push({
+								time:d.time,
+								value:d.value
+							});
+						} 
+						
+					});
+					console.log("Object =", obj1);
+					//BuildChart(obj1);
+					
+					return obj1;
+				};
+				
+				function populateBins(obj1){
+					console.log("populate bins");
+					//console.log("empty bins", empty_bins);
+					//var bins = window.new_bins;
+					// use the alt_bins instead of the bins created in the loaddata function.
+					var bins = window.altbins;
+					for (var o=0; o<bins.length; o++){
+						bins[o].value=0;
+					}
+					console.log("empty bins", bins)
+					for (var i=0;i<obj1.values.length;i++){
+						var t=format3.parse(obj1.values[i].time); // convert the time field to a datetime object
+							var t_d=t.getDate(); //store the day
+							var t_h=t.getHours(); //store the hour
+							var time_in_msec = t.getTime(); // converting the time to milliseconds for comparision ease
+							var v=obj1.values[i].value*1000;  // convert value from seconds to milliseconds
+						for (var j=0;j<bins.length; j++) {
+							
+							if (t_d==bins[j].binStart.getDate() && (t_h>=bins[j].binStart.getHours() && t_h <bins[j].binEnd.getHours())) {
+								if (time_in_msec >= bins[j].binStart.getTime() && (time_in_msec+v) <= bins[j].binEnd.getTime()){
+									bins[j].value+=(v/1000);
+									bins[j].value=bins[j].value.toFixedDown(2);
+									break;
+								} else if (time_in_msec >= bins[j].binStart.getTime() && ((time_in_msec+v) > bins[j].binEnd.getTime() && (time_in_msec+v) < bins[j+1].binEnd.getTime())) {
+									var overtime = (time_in_msec+v) - bins[j].binEnd.getTime(); // OT in milliseconds
+									bins[j+1].value+=(overtime/1000); // add the OT to the next interval/bin
+									bins[j+1].value=bins[j+1].value.toFixedDown(2); // format the decimals to 2 places
+									bins[j].value+=((v-overtime)/1000); //add the (value field - OT) to the current bin/interval
+									bins[j].value=bins[j].value.toFixedDown(2); // format the decimals to 2 places
+									break;
+								}
+							}
+						
+						}
+					}
+					console.log("loaded bins", bins);
+					//var bins = global_bins;
+					//BuildChart(bins);
+					return bins;
+				};
+				
+				function BuildChart(data){
+					console.log("Building Chart!");
+					var j=[];
+					//console.log(data);
+					//console.log(d3.keys(data));
+					data.forEach(function(d,i){
+						//console.log(d.key);
+						//console.log(d.values);
+						j.push(d.value);
+			
+					});
+					console.log(j);
+					// determines the highest value
+					var maxVal=d3.max(j);
+					var minVal=d3.min(j);
+					var scale = '';
+					// create the scale
+					if (maxVal>= 3600){
+						scale='hours';
+					} else if (maxVal<3600 && maxVal>=60){
+						scale='minutes';
+					} else {
+						scale='seconds';
+					}
+					console.log(scale);
+					var times_more_than_60=0;
+					var times_more_than_0=0;
+					for (var i=0;i<j.length;i++){
+						if (j[i]>60){times_more_than_60++;}
+						if (j[i]>0){times_more_than_0++;}
+					}
+					console.log(times_more_than_60);
+					console.log(times_more_than_0);
+					if ((times_more_than_60/times_more_than_0)>=0.6){
+						scale='minutes';
+					} else {scale='seconds';}
+					console.log(scale);
+					
+					// D3 Tooltip
+					var tip = d3.tip()
+					  .attr('class', 'd3-tip')
+					  .offset([-10, 0])
+					  .html(function(d) {
+						var start=d3.time.format("%a %b %d %Y %H:%M:%S")(new Date(d.binStart));
+						var end = d3.time.format("%a %b %d %Y %H:%M:%S")(new Date(d.binEnd));
+						//console.log(start);
+						var result = formatTime(d.value);
+						var html = "<strong>Duration:</strong> <span style='color:red'>" + result + "</span></br>";
+						html+= "<strong>Start:</strong> <span style='color:red'>" + start + "</span></br>";
+						html+= "<strong>End:</strong> <span style='color:red'>" + end + "</span>";
+						return html;
+					  });
+					  
+					function make_x_axis() {        
+						return d3.svg.axis()
+							.scale(x)
+							 .orient("bottom")
+							 //.ticks(13)
+					}
+
+					function make_y_axis() {        
+						return d3.svg.axis()
+							.scale(y)
+							.orient("left")
+							//.ticks(days.length)
+					}
+					
+					var w = parseInt(d3.select('#pie1').style('width'), 10);
+					console.log("div width", w);
+					var h = parseInt(d3.select('#pie1').style('height'), 10);
+					console.log("div height", h);
+					
+					var margin = {top: 20, right: 20, bottom: 65, left: 65},
+						width = w - margin.left - margin.right,
+						height = h - margin.top - margin.bottom;
+
+					var x = d3.scale.ordinal()
+						.rangeRoundBands([0, width], .1);
+
+					var y = d3.scale.linear()
+						.range([height, 0]);
+						
+					var day_counter=0; // to count if the day of the week changes
+					var counter=0; // to keep count of first tick displayed
+					
+					var xAxis = d3.svg.axis()
+						.scale(x)
+						.orient("bottom")
+						.tickFormat(function (d){
+							//var counter=0;
+							var day=d.getDate();
+							var year=d.getFullYear();
+							var month = d.getMonth();
+							var wkday= d.getDay();
+							if (wkday!=window.wkday){day_counter++;}
+							var hour=d.getHours();
+							var minute=d.getMinutes();
+							var s = new Date(year,month,day,hour,minute);
+							//console.log(s);
+							if (counter==0){
+								window.wkday=wkday;
+								counter++;
+								return d3.time.format('%a-%d %H:%M')(s);
+							} else if (wkday==window.wkday){
+								return d3.time.format('%H:%M')(s);
+							} else {
+								day_counter++;
+								window.wkday=wkday;
+								return d3.time.format('%a-%d %H:%M')(s);
+							}
+							
+							//return d3.time.format('%a-%d %H:%M')(d);
+							});
+					//.tickFormat(d3.time.format('%a-%d %H:%M')) //shorter format.
+
+					var yAxis = d3.svg.axis()
+						.scale(y)
+						.orient("left")
+						.tickFormat(function(d){
+							if (scale=='minutes'){
+								return Math.floor(d/60);
+							} else if (scale=='seconds'){
+								return Math.floor(d);
+							}
+						});
+						//.ticks(10);
+
+					var svg = d3.select("#pie1").append("svg")
+						.attr("width", width + margin.left + margin.right)
+						.attr("height", height + margin.top + margin.bottom)
+					  .append("g")
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+					//var svg = d3.select("graphdiv svg");
+
+					svg.call(tip);
+					
+					  x.domain(data.map(function(d) { return d.binStart; }));
+					  y.domain([0, d3.max(data, function(d) { return d.value; })]);
+
+					  svg.append("g")
+						  .attr("class", "x axis")
+						  .attr("transform", "translate(0," + height + ")")
+						  .call(xAxis)
+						  .selectAll("text")  
+							.style("text-anchor", "end")
+							.attr("dx", "-.8em")
+							.attr("dy", ".15em")
+							.attr("transform", function(d) {
+								return "rotate(-55)" 
+							})
+							.style("font-size","9px")
+							//.style("font-weight","bold")
+							.style("font-family","Verdana");
+
+					  svg.append("g")
+						  .attr("class", "y axis")
+						  .call(yAxis)
+						.append("text")
+						  //.attr("transform", "rotate(-90)")
+						  .attr("transform", "translate(-55," + ((height-margin.bottom)/2) + ") rotate(-90)")
+						  .attr("y", 0)
+						  .attr("dy", ".71em")
+						  .style("text-anchor", "end")
+						  .text("Interaction in "+scale+" ");
+						  
+					svg.append("g")         
+						.attr("class", "grid")
+						.attr("transform", "translate(0," + (height) + ")")
+						.call(make_x_axis()
+							.tickSize(-(height), 0, 0)
+							.tickFormat("")
+						)
+
+					svg.append("g")         
+						.attr("class", "grid")
+						.attr("transform", "translate("+0+", 0)")
+						.call(make_y_axis()
+							.tickSize(-(width), 0, 0)
+							.tickFormat("")
+						)
+
+					  svg.selectAll(".bar")
+						  .data(data)
+						.enter().append("rect")
+						  .attr("class", "bar-blue")
+						  .attr("x", function(d) { return x(d.binStart); })
+						  .attr("width", x.rangeBand())
+						  .attr("y", function(d) { return y(d.value); })
+						  .attr("height", function(d) { return height - y(d.value); })
+						  .on('mouseover', tip.show)
+						  .on('mouseout', tip.hide);
+						  
+						  
+				};
+				
+				LoadData();
+				//Alt_bins();
+				//var empty_bins = window.new_bins;
+				//console.log("window.new_bins", window.new_bins);
+				//populateSelect(window.data);
+			
+				$('.selection').on('change',function(blah) {
+					//console.log($(this).val());
+					//console.log(global_data);
+					var app=($(this).val());
+					console.log(app);
+					/*d3.json('AllApps_activity_ByHour_2.json', function(data){
+							//console.log("");
+							BuildObj(data, app);
+						});*/
+					d3.select('svg').remove();	
+					//console.log("empty bins", empty_bins);
+					/*var svg = d3.select("#graphdiv").append("svg")
+						.attr("width", width + margin.left + margin.right)
+						.attr("height", height + margin.top + margin.bottom)
+					  .append("g")
+						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");*/
+						
+					var appObj = BuildObj(window.data,app);
+					//var empty_bins = window.new_bins;
+					var appBins = populateBins(appObj);
+					window.appBins = appBins;
+					BuildChart(appBins);
+					//Alt_bins();
+					
+				});
+				
+				d3.select(window).on('resize', resize); 
+
+				function resize() {
+					// update width
+					var w2 = parseInt(d3.select('#pie1').style('width'), 10);
+					console.log("div width", w2);
+					h2 = parseInt(d3.select('#pie1').style('height'), 10);
+					console.log("div height", h2);
+					d3.select('svg').remove();
+					var appBins = window.appBins;
+					BuildChart(appBins);
+				};
+				
+				/*var global_data;
+				
+				d3.json('AllApps_activity_ByHour_2.json', function(data){
+							console.log("Foreground launched");
+							//BuildChart(data);
+							populateSelect(data);
+							global_data=data;
+						});
+				
+						
+				$('.selection').on('change',function(blah) {
+					//console.log($(this).val());
+					//console.log(global_data);
+					var app=($(this).val());
+					console.log(app);
+					//d3.json('AllApps_activity_ByHour_2.json', function(data){
+							//console.log("");
+							//BuildObj(data, app);
+						//});
+					BuildObj(global_data,app);
+				});
+				
+				function populateSelect(data){
+					//console.log(data);
+					console.log("Populating Select Box");
+					data.sort(dynamicSort("name"));
+					var names =[];
+					for (i=0;i<data.length;i++){
+						names[i]=data[i].name;
+					}
+					console.log(names);
+					var uniq = names.reduce(function(a,b){
+						if (a.indexOf(b) < 0 ) a.push(b);
+						return a;
+					  },[]);
+					console.log("unique", uniq);
+					console.log(uniq[5]);
+					var objects=[];
+					//objects.key='';
+					//objects.value=0.0;
+					for (i=0;i<uniq.length;i++){
+						objects.push({
+							key:uniq[i],
+							value:0,
+							datapoints:0
+						});		
+					}
+					console.log(objects);
+					console.log(objects[0].key);
+					console.log(objects.length);
+					//var datapointnumber=0;
+					//console.log(d);
+					//var name = d.name.replace(/.exe/i,"");
+					//var name = d.name;
+					//objects.key=d.name;
+					for (j=0;j<objects.length;j++){
+						data.forEach(function(d,i){
+							var name = String(objects[j].key);
+							//console.log(name); //works fine - I can enumerate all the keys.
+							if (d.name==name) {
+								objects[j].datapoints++;
+								objects[j].value+=d.value;
+								objects[j].value=objects[j].value.toFixedDown(3);
+							};
+						});
+					}
+					console.log(objects);
+					$.each(objects, function(i, obj) {
+						if (obj.value>120.0 && obj.datapoints>=5) {
+							$('.selection').append($('<option>').text(obj.key).attr('value', obj.key));
+						}
+					});
+				
+				};
+				
+				function BuildObj(data, app) {
+					console.log("Building Application");
+					console.log("application =", app);
+					var obj1={};
+					obj1.key=app;
+					obj1.values=[];
+					data.forEach(function(d,i){
+						//console.log(d);
+						//var name = d.name.replace(/.exe/i,"");
+						var name = d.name;
+						if (name==app.toLowerCase()){
+							//chrome.key=d.name;
+							//chrome.values=[];
+							obj1.values.push({
+								time:d.time,
+								value:d.value
+							});
+						} 
+						
+					});
+					console.log("Object =", obj1);
+					BuildChart(obj1);
+				};
+				
+				function BuildChart(app){
+						// Create Bar Chart
+						console.log("Success");
+						// Put all the values from both keys (runtime, interacttime) in a variable called 'j' and find the highest value to determine scale
+						var j=[];
+						var keys=[];
+						var data2=[];
+						console.log("application =", app);
+						//console.log(data);
+						//console.log(d3.keys(data));
+						
+						data2.push(app);
+						//console.log("chrome =",chrome);
+						//console.log("firefox = ",firefox);
+						// determines the highest value
+						app.values.forEach(function(d,i){
+							j.push(d.value);
+						});
+						console.log(j);
+						var maxVal=d3.max(j);
+						var minVal=d3.min(j);
+						var scale = '';
+						// create the scale
+						if (maxVal>= 3600){
+							scale='hours';
+						} else if (maxVal<3600 && maxVal>=60){
+							scale='minutes';
+						} else {
+							scale='seconds';
+						}
+						console.log(scale);
+						console.log("maxval =",maxVal);
+						
+						var format = d3.time.format.utc("%Y-%m-%dT%H:%M:%S");
+						// Create and load chart
+						nv.addGraph(function() {
+							var chart = nv.models.lineWithFocusChart()
+								.defined(function(d) { return d.value != null; })
+								.x(function(d) { return format.parse(d.time); })
+								.y(function(d) { 
+									switch (scale){
+							
+										case 'hours':
+											return (d.value/3600.0);
+											break;
+										case 'minutes':
+											return (d.value/60.0);
+											break;
+										case 'seconds':
+											
+											return d.value;
+											break;
+									}
+								})
+								.margin({top: 30, right: 80, bottom: 70, left: 100});
+								//.showControls(true)        //Allow user to switch between "Grouped" and "Stacked" mode.
+								//.stacked(true)
+								////showDist, when true, will display those little distribution lines on the axis.
+								//.showDistY(true)
+								//.height(height);
+								//.reduceXTicks(false)
+								//.staggerLabels(true); // Stagger labels
+								//.rotateLabels(-45); // Or Rotate them 45 degrees
+								chart.noData("There is no Data to display");
+								chart.yAxis
+									//.tickFormat(function(d){return milisecondsToComplete(d)}/*d3.format(',.2f'))
+									.tickFormat(d3.format(',.2f'))
+									.axisLabel('Time ('+scale+')');
+								chart.xAxis
+									.axisLabel('Days')
+									.showMaxMin(false)
+									//.rotateLabels(-45)
+									//.tickValues(<variable>)
+									.axisLabelDistance(15)
+									.staggerLabels(true)
+									.tickFormat(function(d){return d3.time.format.utc("%Y-%m-%d")(new Date(d));});
+								chart.x2Axis
+									.axisLabel('Days')
+									//.staggerLabels(true)
+									.showMaxMin(false)
+									.axisLabelDistance(20)
+									.tickFormat(function(d){return d3.time.format.utc("%Y-%m-%d")(new Date(d));});
+								
+								//chart.interpolate("cardinal");
+								var color_array = ["#ff9d2a","#052645","#67aded"];
+								// Dynamic yAxis Range
+								var upper_lim=0;
+								if (scale=='hours') {
+									maxVal=maxVal/3600;
+									upper_lim=Math.floor(maxVal)+2;
+								} else if (scale=='minutes') {
+									maxVal=maxVal/60;
+									upper_lim=Math.floor(maxVal)+5;
+								} else if (scale=='seconds') {
+									upper_lim=Math.floor(maxVal)+30;
+								}
+								// logging upper_lim
+								console.log(upper_lim);
+								// Force yAxis range
+								chart.forceY([0,upper_lim]);
+								//chart.color(function(d,i){
+									//return color_array[i];
+								//});
+								chart.color(["#ff7f0e","#102263","#2CA02C"]);
+								
+								chart.tooltip.enabled(true);
+								//chart.useInteractiveGuideline(true);
+								//chart.interactiveGuideline.tooltip.contentGenerator(function (d){
+									//console.log(d);
+								//});
+								//chart.showYAxis(false);
+								//chart.forceY([0.5,3]);
+								//chart.pointShape("diamond");
+								// Tooltip formatting for easier readability
+								chart.tooltip.contentGenerator(function (d) {
+									//console.log(d);
+									//console.log(d.seriesIndex);
+									//var index=d.point.series;
+									var time=formatTime(d.point.value);
+									var date=d3.time.format("%Y-%m-%d %H:%M:%S.%L")(new Date(d.point.time));
+									//console.log(time);
+									var html = "<h4 align='center'>"+d.series[0].key+"</h4>";
+									html+="<p>Date: "+date+"</p>";
+									html+="<p>Value: "+time+"</p>";
+									return html;
+								});
+								
+								d3.select('#pie1 svg')
+									.datum(data2)
+									.transition().duration(500)
+									.call(chart);
+
+								nv.utils.windowResize(chart.update);
+								
+								//chart.scatter.dispatch.on("elementClick", function(e) {
+									//console.log(e);
+									//console.log($(this));
+									//console.log(e.data);
+									//loadsecondgraph(e.data);
+								//});
+
+								return chart;
+								
+						});
+				};*/
+		
+		
+					
+		});
+	</script>
+
+</body>
+
+</html>

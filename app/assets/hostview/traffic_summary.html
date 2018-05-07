@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+	<!--Optional hostview css>-->
+	<!--<link rel="stylesheet" href="https://muse.inria.fr/hostview-dev/styles/hostview.css">-->
+	<!--D3 style sheet by D3 creator (not necessary)-->
+	<link type="text/css" href="js/d3_style.css" rel="stylesheet" />
+	<link href="css/common_styles.css" rel="stylesheet" type="text/css">
+	
+	<link type="text/css" rel="stylesheet" href="css/jquery.qtip.min.css" />
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!-- Graphing Libs -->
+	<link href="js/nv.d3.css" rel="stylesheet" type="text/css">
+	<script src="js/D3.js"></script>
+	<script src="js/jquery.js"></script>
+	<script src="js/nv.d3.js"></script>
+    <script src="js/stream_layers.js"></script>
+	
+	<script src="js/jquery.qtip.min.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	<!--only using d3.queue to load 2 data files at once -2 queries, one for FG apps, one for BG apps-->
+	<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
+	<!--bootstrap and moment.js-->
+	<!--<script type="text/javascript" src="https://muse.inria.fr/hostview-dev/js/moment.min.js"></script>-->
+	<script src="js/moment.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+	<!--<script src="js/daterangepicker.js"></script>
+	<link href="js/daterangepicker.css" rel="stylesheet">-->
+	<!--<script src="https://muse.inria.fr/hostview-dev/js/daterangepicker/daterangepicker.js"></script>-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<style type="text/css">
+	.nvd3 .nv-x .nv-axis .nv-axislabel {
+		font-weight:bold;
+	}
+	.nvd3 .nv-y .nv-axis .nv-axislabel {
+		font-weight:bold;
+	}
+	
+	.nvd3.nv-pie .nv-pie-title {
+		fill: black;
+		font-size: 10px;
+	}
+	</style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="dashboard_draft.html">Hostview</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="dashboard_draft.html"><i class="fa fa-fw fa-dashboard"></i> My dashboard</a>
+                    </li>
+					<li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-bar-chart"></i> Details <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="application.html"><i class="fa fa-fw fa-desktop"></i> Applications</a>
+                            </li>
+                            <li>
+                                <a href="usage.html"><i class="fa fa-fw fa-clock-o"></i> Device Activity</a>
+                            </li>
+							<li>
+                                <a href="networks.html"><i class="fa fa-fw fa-wifi"></i> Networks</a>
+                            </li>
+							<li class="active">
+                                <a href="traffic_summary.html"><i class="fa fa-fw fa-sliders"></i> Traffic Statistics</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Traffic Statistics
+                           <!--  <small>Subheading</small> -->
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="dashboard_draft.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-sliders"></i> Traffic Statistics
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+                        <div class="panel panel-red">
+                            <div class="panel-heading" title="traffic">
+                                <h3 class="panel-title"><i class="fa fa-sliders"></i> Traffic Volume Breakdown
+								<div class="pull-right"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i><span class="large-time"></span><span class="short-time"></span><b class="caret"></b></div>
+								</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div id="choice">
+									 <form>
+										<select class="selection">
+											<option value="select" selected="selected">Please Select an Application</option>
+										</select>
+										<input type="radio" name="Interaction" id="Foreground" value="Foreground" checked="checked"> Foreground
+									    <input type="radio" name="Interaction" id="Background" value="Background"> Background<br>
+										<!--<select class="selection2">
+											<option value="select" selected="selected">Please Select an Application</option>
+										</select>-->
+									</form>
+								</div>
+								<div class="flot-chart" id="bar3_container">
+                                    <div class="flot-chart-content" id="bar3">
+										
+									</div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+				</div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <!--<script src="js/jquery.js"></script>-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	
+	// Number (decimal) formatting function
+		Number.prototype.toFixedDown = function(digits) {
+			var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
+				m = this.toString().match(re);
+			return m ? parseFloat(m[1]) : this.valueOf();
+		};
+		// Tooltip
+		$('[title="traffic"]').qtip({
+			content:{
+				text:'Time-Series of traffic sent and received by applications in the Foreground / Background'
+			},
+			position: {
+				my: 'bottom center',
+				at:'top center',
+				target: 'mouse'
+			},
+			style:{
+				classes:'qtip-dark qtip-bootstrap'
+			}
+		});
+		$('[name="Interaction"]').qtip({
+			content:{
+				text:'Selecting the Foreground or Background button loads the respective applications in the select list to the left'
+			},
+			position: {
+				my: 'bottom center',
+				at:'top center',
+				target: 'mouse'
+			},
+			style:{
+				classes:'qtip-dark qtip-bootstrap'
+			}
+		});
+		// auto-scaling bytes to kb,mb,gb,etc.
+		function formatBytes(bytes,decimals) {
+		   if(bytes == 0) return '0 Byte';
+		   var k = 1000;
+		   var dm = decimals + 1 || 3;
+		   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+		   var i = Math.floor(Math.log(bytes) / Math.log(k));
+		   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+		};
+		//Time Formatting
+		function formatTime(d) {
+			var s='';
+			var day = 60*60*24;
+			var hour = 60*60;
+			var minute = 60;
+				//console.log(d);
+			if(d/day>1){
+				s = s + Math.floor(d/day) + " Days";
+				d = d - Math.floor(d/day)*day;
+			} 
+			if(d/hour>1){
+				s = s + " " + Math.floor(d/hour) + " Hours";
+				d = d - Math.floor(d/hour)*hour;
+			}
+			if(d/minute>1){
+				s = s + " " + Math.floor(d/minute) + " Minutes";
+				d = d - Math.floor(d/minute)*minute;
+			}
+			// round seconds to 2 decimal places using toFixedDown	
+			if(d > 0) {
+				s = s + " " + d.toFixedDown(2) + " Seconds";
+			}
+			return s;
+		
+		};
+		
+		// sorting function(s)
+		function DataSortByTotal(a,b){
+		  if (a.total < b.total)
+			return -1;
+		  else if (a.total > b.total)
+			return 1;
+		  else 
+			return 0;
+		};
+		
+		function dynamicSort(property) {
+			var sortOrder = 1;
+			if(property[0] === "-") {
+				sortOrder = -1;
+				property = property.substr(1);
+			}
+			return function (a,b) {
+				var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+				return result * sortOrder;
+			}
+		};
+		
+		// function to add minutes
+		function addMinutes(date, minutes) {
+				return new Date(date.getTime() + minutes*60000);
+		};
+		
+		var bins=[];
+		var format = d3.time.format("%Y-%m-%dT%H:%M:%S.%L");
+		var format2 = d3.time.format("%Y/%m/%d");
+		var format3 = d3.time.format("%Y-%m-%dT%H:%M:%S");
+		var global_data;
+	
+	$(function() {
+
+			$('input:radio[name="Interaction"][value="Foreground"]').prop('checked', true);
+			
+			// Pre-populate the daterange field with last 7 days interval.
+			//$('.pull-right .large-time').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+			function cb(start, end, label) {
+			  console.log("New date range selected: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + " (predefined range: " + label + ")");
+			  $('.pull-right .large-time').html(" "+start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY')+" ");
+			  start._d.setHours(00);
+			  start._d.setMinutes(00);
+			  start._d.setSeconds(00);
+			  end._d.setHours(23);
+			  end._d.setMinutes(59);
+			  end._d.setSeconds(59);
+			  //use the start._d and end._d as the range to pull data from the DB.
+			  console.log("new start",start._d);
+			  console.log("new end",end._d);
+			};
+			
+			cb(moment().subtract(6, 'days'), moment());
+			
+			$('.pull-right').daterangepicker({
+				"linkedCalendars": false,
+				"alwaysShowCalendars": true,
+				"startDate": moment().subtract(6, 'days'),
+				"endDate": moment(),
+				"minDate": "01/01/2016",
+				"maxDate": "06/31/2016",
+				ranges: {
+				   'Today': [moment(), moment()],
+				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				   'This Month': [moment().startOf('month'), moment().endOf('month')],
+				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				}
+			}, cb);
+			
+			$('.pull-right').on('apply.daterangepicker', function(ev, picker) {
+			  window.picker=picker;
+			  console.log(picker.startDate.format('YYYY-MM-DD'));
+			  console.log(picker.endDate.format('YYYY-MM-DD'));
+			  //console.log(picker.startDate._d);
+			  $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+			  //console.log($(this));
+			});
+			
+			$('.pull-right').on('cancel.daterangepicker', function(ev, picker) {
+				  $(this).val('');
+			});
+		
+		
+		//Bar Chart 3
+		
+		
+		function Alt_bins(start,end){
+		//var picker = window.picker;
+		//var start = picker.startDate._d;
+		//var end = picker.endDate._d;
+		var altbins=[];
+		console.log("Alternate Bins Creation Start!");
+		console.log("start",start);
+		console.log("end", end);
+		var startDate = start;
+		var endDate = end;
+		var bin_start = startDate;
+		var duration = Math.round(((endDate.getTime() - startDate.getTime())/1000)/3600); // subtract start from end to get duration in msec
+		// convert duration to hours and round off. 
+		console.log(duration);
+		if (duration <=24) {
+			var bin_size = 1;
+		} else {
+			var bin_size = Math.round(duration / 80);
+		}
+		console.log(bin_size);
+		var bin_end = addMinutes(bin_start, (60*bin_size));
+		altbins.push({
+			binStart:bin_start,
+			binEnd:bin_end,
+			sent:0,
+			recv:0
+		});
+		while (bin_end.getTime() <= endDate.getTime()){
+			bin_start = bin_end;
+			bin_end = addMinutes(bin_start, (60*bin_size));
+			altbins.push({
+				binStart:bin_start,
+				binEnd:bin_end,
+				sent:0,
+				recv:0
+			});
+			
+		};
+		console.log("alternate bins",altbins);
+		window.altbins=altbins;
+	};
+	
+	var q = d3.queue()
+		.defer(d3.json, 'offline_data/Traffic_data/foregroundApp_flow_timeseries.json') // data object containing query data from activity table
+		.defer(d3.json, 'offline_data/Traffic_data/backgroundApp_flow_timeseries.json') // data object containing query data from sessions table
+		.await(analyze);
+	
+	function analyze (error, data1, data2) {
+	  if (error) throw error;
+	  //console.log(data1);
+	  //console.log(data2);
+			
+			window.data1=data1;
+			window.data2=data2;
+			//bins.key='';
+			//bins.values=[];
+			var first_date1;
+			var last_date1;
+			var first_date2;
+			var last_date2;
+			data1.forEach(function(d,i){
+				//console.log(d);
+				//console.log(format.parse(d.time));
+				//console.log(i);
+				// checks the first and last date in the timestamps and uses that as duration
+				// in live graph, use the daterange callback function to send a start and end time to the alt_bins function.
+				if (i==0) {
+					//console.log(i);
+					first_date1 = format3.parse(d.start);
+					console.log("first date", first_date1);
+				}
+				else if (i==data1.length-1) {
+					//console.log(i);
+					last_date1 = format3.parse(d.end);
+					console.log("last date", last_date1);
+				}
+				
+			});
+			//console.log("bins",bins);
+			first_date1.setHours(00);
+			first_date1.setMinutes(00);
+			first_date1.setSeconds(00);
+			last_date1.setDate(31);
+			//last_date.setMonth(03);
+			last_date1.setHours(23);
+			last_date1.setMinutes(59);
+			last_date1.setSeconds(59);
+			console.log("first date", first_date1);
+			console.log("last date", last_date1);
+			//var target1 = ".selection"
+			populateSelect(data1);
+			//var target2 =".selection2"
+			//populateSelect(data2, target2);
+			console.log("Data Loaded");
+			Alt_bins(first_date1, last_date1);
+			
+		
+
+	};
+	
+		function populateSelect(data){
+			//console.log(data);
+			console.log("Populating Select Box");
+			data.sort(dynamicSort("name"));
+			var names =[];
+			for (i=0;i<data.length;i++){
+				if (names.indexOf(data[i].name)== -1){
+					names[i]=data[i].name;
+				}
+			}
+			console.log(names);
+			var uniq = names.reduce(function(a,b){
+				if (a.indexOf(b) < 0 ) a.push(b);
+				return a;
+			  },[]);
+			console.log("unique", uniq);
+			//console.log(uniq[5]);
+			var objects=[];
+			//objects.key='';
+			//objects.value=0.0;
+			for (i=0;i<uniq.length;i++){
+				objects.push({
+					key:uniq[i].slice(0,-4),
+					sent:0,
+					recv:0,
+					datapoints:0
+				});		
+			}
+			console.log(objects);
+			console.log(objects[0].key);
+			console.log(objects.length);
+			//var datapointnumber=0;
+			//console.log(d);
+			//var name = d.name.replace(/.exe/i,"");
+			//var name = d.name;
+			//objects.key=d.name;
+			for (j=0;j<objects.length;j++){
+				data.forEach(function(d,i){
+					var name = String(objects[j].key);
+					//console.log(name); //works fine - I can enumerate all the keys.
+					if (d.name.slice(0,-4)==name) {
+						objects[j].datapoints++;
+						objects[j].sent+=d.sent;
+						objects[j].recv+=d.recv;
+						objects[j].sent=objects[j].sent.toFixedDown(3);
+						objects[j].recv=objects[j].recv.toFixedDown(3);
+					};
+				});
+			}
+			console.log(objects);
+			$.each(objects, function(i, obj) {
+				if (obj.sent>=1500 && obj.recv>=1500) {
+					$('.selection').append($('<option>').text(obj.key).attr('value', obj.key));
+				}
+			});
+		
+		};
+		
+		function BuildObj(data, app) {
+			console.log("Building Application");
+			console.log("application =", app);
+			var obj1={};
+			obj1.key=(app.toLowerCase()).concat(".exe");
+			obj1.values=[];
+			data.forEach(function(d,i){
+				//console.log(d);
+				//var name = d.name.replace(/.exe/i,"");
+				var name = d.name;
+				if (name==obj1.key){
+					//chrome.key=d.name;
+					//chrome.values=[];
+					obj1.values.push({
+						start:d.start,
+						end:d.end,
+						sent:d.sent,
+						recv:d.recv
+					});
+				} 
+				
+			});
+			console.log("Object =", obj1);
+			//BuildChart(obj1);
+			
+			return obj1;
+		};
+		
+		function populateBins(obj1){
+			console.log("populate bins");
+			//console.log("empty bins", empty_bins);
+			//var bins = window.new_bins;
+			var bins = window.altbins;
+			for (var o=0; o<bins.length; o++){
+				bins[o].sent=0;
+				bins[o].recv=0;
+			}
+			console.log("empty bins", bins)
+			// Re-DO the bin population function by creating 2 loops. Outer loop should be bin length. And inner loop should be object.values.length.
+			// within each iteration of outer loop (bin) it iterates over all the values and whichever match the bin get added to it.
+			for (var i=0;i<obj1.values.length;i++){
+				var t1=format3.parse(obj1.values[i].start); // convert the start time field to a datetime object
+				var t2=format3.parse(obj1.values[i].end); // convert the end time field to a datetime object
+				var t_d=t1.getDate(); //store the day
+				var t1_h=t1.getHours(); //store the start hour
+				var t2_h=t2.getHours(); //store the end hour
+				var time_in_msec = t1.getTime(); // converting the start time to milliseconds for comparision ease
+				var time_in_msec2 = t2.getTime(); // converting the end time to milliseconds for comparision ease
+				var s=obj1.values[i].sent;  // sent in bytes
+				var r=obj1.values[i].recv;  // recv in bytes
+				for (var j=0;j<bins.length; j++) {
+					
+					if (t_d==bins[j].binStart.getDate() && (t1_h>=bins[j].binStart.getHours() && t2_h <bins[j].binEnd.getHours())) {
+						if (time_in_msec >= bins[j].binStart.getTime() && (time_in_msec2) <= bins[j].binEnd.getTime()){
+							bins[j].sent+=s;
+							bins[j].recv+=r;
+							bins[j].sent=bins[j].sent.toFixedDown(2);
+							bins[j].recv=bins[j].recv.toFixedDown(2);
+							break;
+						} else if (time_in_msec >= bins[j].binStart.getTime() && ((time_in_msec2) > bins[j].binEnd.getTime() && (time_in_msec2) < bins[j+1].binEnd.getTime())) {
+							var overtime = (time_in_msec2) - bins[j].binEnd.getTime(); // OT in milliseconds
+							var duration = time_in_msec2 - time_in_msec;
+							var fraction = (overtime/duration).toFixedDown(2);
+							var sent_fraction = fraction*sent; // bytes sent in next bin
+							var recv_fraction = fraction*recv; // bytes recv in next bin
+							var left_fraction = sent - sent_fraction;
+							var left_fraction2 = recv - recv_fraction;
+							bins[j+1].sent+=sent_fraction; // add the fraction of packets that were OT to the next bin.
+							bins[j+1].sent=bins[j+1].sent.toFixedDown(2); // format the decimals to 2 places
+							bins[j+1].recv+=recv_fraction; // add the fraction of packets that were OT to the next bin.
+							bins[j+1].recv=bins[j+1].recv.toFixedDown(2); // format the decimals to 2 places
+							bins[j].sent+=(left_fraction); //add the (value field - OT) to the current bin/interval
+							bins[j].sent=bins[j].sent.toFixedDown(2); // format the decimals to 2 places
+							bins[j].recv+=(left_fraction2); //add the (value field - OT) to the current bin/interval
+							bins[j].recv=bins[j].recv.toFixedDown(2); // format the decimals to 2 places
+							
+							break;
+						}
+					}
+				
+				}
+			}
+			console.log("loaded bins", bins);
+			//var bins = global_bins;
+			//BuildChart(bins);
+			return bins;
+		};
+		
+		function BuildChart(data){
+			console.log("Building Chart!");
+			var j=[];
+			var k=[];
+			//console.log(data);
+			//console.log(d3.keys(data));
+			data.forEach(function(d,i){
+				//console.log(d.key);
+				//console.log(d.values);
+				j.push(d.sent+d.recv);
+	
+			});
+			console.log(j);
+			// determines the highest value
+			var maxVal=d3.max(j);
+			var minVal=d3.min(j);
+			var scale = '';
+			// create the scale
+			if (maxVal>= 1000000000){
+				scale='gigabytes';
+			} else if (maxVal<1000000000 && maxVal>=1000000){
+				scale='megabytes';
+			} else {
+				scale='kilobytes';
+			}
+			console.log(scale);
+			
+			
+			// D3 Tooltip
+			var tip = d3.tip()
+			  .attr('class', 'd3-tip')
+			  .offset([-10, 0])
+			  .html(function(d) {
+				var start=d3.time.format("%a %b %d %Y %H:%M:%S")(new Date(d.binStart));
+				var end = d3.time.format("%a %b %d %Y %H:%M:%S")(new Date(d.binEnd));
+				//console.log(d);
+				var result = formatBytes(d.sent,2);
+				var html = "<strong>Traffic Sent:</strong> <span style='color:red'>" + result + "</span></br>";
+				html+= "<strong>Start:</strong> <span style='color:red'>" + start + "</span></br>";
+				html+= "<strong>End:</strong> <span style='color:red'>" + end + "</span>";
+				return html;
+			  });
+			  
+			  var tip2 = d3.tip()
+			  .attr('class', 'd3-tip')
+			  .offset([-10, 0])
+			  .html(function(d) {
+				var start=d3.time.format("%a %b %d %Y %H:%M:%S")(new Date(d.binStart));
+				var end = d3.time.format("%a %b %d %Y %H:%M:%S")(new Date(d.binEnd));
+				//console.log(d);
+				var result = formatBytes(d.recv,2);
+				var html = "<strong>Traffic Received:</strong> <span style='color:red'>" + result + "</span></br>";
+				html+= "<strong>Start:</strong> <span style='color:red'>" + start + "</span></br>";
+				html+= "<strong>End:</strong> <span style='color:red'>" + end + "</span>";
+				return html;
+			  });
+			  
+			function make_x_axis() {        
+				return d3.svg.axis()
+					.scale(x)
+					 .orient("bottom")
+					 //.ticks(13)
+			}
+
+			function make_y_axis() {        
+				return d3.svg.axis()
+					.scale(y)
+					.orient("left")
+					//.ticks(days.length)
+			}
+			
+			var w = parseInt(d3.select('#bar3').style('width'), 10);
+			console.log("div width", w);
+			var h = parseInt(d3.select('#bar3').style('height'), 10);
+			console.log("div height", h);
+			
+			var margin = {top: 20, right: 20, bottom: 65, left: 65},
+				width = w - margin.left - margin.right,
+				height = h - margin.top - margin.bottom;
+
+			var x = d3.scale.ordinal()
+				.rangeRoundBands([0, width], .1);
+
+			var y = d3.scale.linear()
+				.range([height, 0]);
+				
+			var day_counter=0; // to count if the day of the week changes
+			var counter=0; // to keep count of first tick displayed
+			
+			var xAxis = d3.svg.axis()
+				.scale(x)
+				.orient("bottom")
+				.tickFormat(function (d){
+					//var counter=0;
+					var day=d.getDate();
+					var year=d.getFullYear();
+					var month = d.getMonth();
+					var wkday= d.getDay();
+					if (wkday!=window.wkday){day_counter++;}
+					var hour=d.getHours();
+					var minute=d.getMinutes();
+					var s = new Date(year,month,day,hour,minute);
+					//console.log(s);
+					if (counter==0){
+						window.wkday=wkday;
+						counter++;
+						return d3.time.format('%a-%d %H:%M')(s);
+					} else if (wkday==window.wkday){
+						return d3.time.format('%H:%M')(s);
+					} else {
+						day_counter++;
+						window.wkday=wkday;
+						return d3.time.format('%a-%d %H:%M')(s);
+					}
+					
+					//return d3.time.format('%a-%d %H:%M')(d);
+					});
+			//.tickFormat(d3.time.format('%a-%d %H:%M')) //shorter format.
+
+			var yAxis = d3.svg.axis()
+				.scale(y)
+				.orient("left")
+				.tickFormat(function(d){
+					if (scale=='gigabytes'){
+						return (d/1000000000.0);
+					} else if (scale=='megabytes'){
+						return (d/1000000.0);
+					} else if (scale=='kilobytes'){
+						return (d/1000.0);
+					}
+				});
+				//.ticks(10);
+
+			var svg = d3.select("#bar3").append("svg")
+				.attr("width", width + margin.left + margin.right)
+				.attr("height", height + margin.top + margin.bottom)
+			  .append("g")
+				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			//var svg = d3.select("graphdiv svg");
+
+			svg.call(tip);
+			svg.call(tip2);
+			
+			  x.domain(data.map(function(d) { return d.binStart; }));
+			  y.domain([0, d3.max(data, function(d) { return (d.sent+d.recv); })]);
+
+			  svg.append("g")
+				  .attr("class", "x axis")
+				  .attr("transform", "translate(0," + height + ")")
+				  .call(xAxis)
+				  .selectAll("text")  
+					.style("text-anchor", "end")
+					.attr("dx", "-.8em")
+					.attr("dy", ".15em")
+					.attr("transform", function(d) {
+						return "rotate(-55)" 
+					})
+					.style("font-size","8px")
+					.style("font-family","verdana");
+
+			  svg.append("g")
+				  .attr("class", "y axis")
+				  .call(yAxis)
+				.append("text")
+				  //.attr("transform", "rotate(-90)")
+				  .attr("transform", "translate(-55," + ((height-(margin.bottom+margin.top))/2) + ") rotate(-90)")
+				  .attr("y", 0)
+				  .attr("dy", ".71em")
+				  .style("text-anchor", "end")
+				  .text("Traffic Volume in "+scale+" ");
+				  
+			svg.append("g")         
+				.attr("class", "grid")
+				.attr("transform", "translate(0," + (height) + ")")
+				.call(make_x_axis()
+					.tickSize(-(height), 0, 0)
+					.tickFormat("")
+				)
+
+			svg.append("g")         
+				.attr("class", "grid")
+				.attr("transform", "translate("+0+", 0)")
+				.call(make_y_axis()
+					.tickSize(-(width), 0, 0)
+					.tickFormat("")
+				)
+
+			  svg.selectAll(".bar")
+				  .data(data)
+				.enter().append("rect")
+				  .attr("class", "bar-blue")
+				  .attr("x", function(d) { return x(d.binStart); })
+				  .attr("width", x.rangeBand())
+				  .attr("y", function(d) { return y(d.sent); })
+				  .attr("height", function(d) { return height - y(d.sent); })
+				  .on('mouseover', tip.show)
+				  .on('mouseout', tip.hide);
+				  
+			svg.selectAll(".bar")
+				  .data(data)
+				.enter().append("rect")
+				  .attr("class", "bar-orange")
+				  .attr("x", function(d) { return x(d.binStart); })
+				  .attr("width", x.rangeBand())
+				  .attr("y", function(d) { return y(d.recv); })
+				  .attr("height", function(d) { return  (height-y(d.recv))-(height-y(d.sent)); })
+				  .on('mouseover', tip2.show)
+				  .on('mouseout', tip2.hide);
+				  
+			// add legend   
+				var legend = svg.append("g")
+					.attr("class", "legend")
+					//.attr("x", w - 65)
+					//.attr("y", 50)
+					.attr("height", 100)
+					.attr("width", 100)
+					.attr('transform', 'translate(-20,50)');
+				
+				var colors = [ ["Received", "#ff7f0e"],
+							["Sent", "#1f77b4"] ];
+				
+				// legend Boxes
+				var legendRect = legend.selectAll('rect').data(colors);
+
+				legendRect.enter()
+					.append("rect")
+					.attr("x", width - 65)
+					.attr("width", 10)
+					.attr("height", 10);
+					
+				legendRect
+					.attr("y", function(d, i) {
+						return i * 20;
+					})
+					.style("fill", function(d) {
+						return d[1];
+					});
+				// Legend text
+				var legendText = legend.selectAll('text').data(colors);
+
+				legendText.enter()
+					.append("text")
+					.attr("x", width - 52);
+
+				legendText
+					.attr("y", function(d, i) {
+						return i * 20 + 9;
+					})
+					.text(function(d) {
+						return d[0];
+					});
+		};
+		
+		$('.selection').on('change',function(blah) {
+			//console.log($(this).val());
+			//console.log(global_data);
+			var app=($(this).val());
+			console.log(app);
+			$('.selection2').val('select');
+			d3.select('svg').remove();
+			//console.log($('input[type=radio][name=Interaction]').value);
+			if ($('input[type=radio][name=Interaction]:checked').val() == 'Foreground'){
+				var appObj = BuildObj(window.data1,app);
+			} else if ($('input[type=radio][name=Interaction]:checked').val() == 'Background'){
+				var appObj = BuildObj(window.data2,app);
+			}
+			//var appObj = BuildObj(window.data1,app);
+			//var empty_bins = window.new_bins;
+			var appBins = populateBins(appObj);
+			window.appBins=appBins;
+			BuildChart(appBins);
+			
+		});
+		
+		$('input[type=radio][name=Interaction]').on('change',function() {
+			if (this.value == 'Foreground') {
+				//alert("Foreground");
+				$('.selection')
+					.empty()
+					.append('<option selected="selected" value="select">Please Select an Application</option>');
+				populateSelect(window.data1);
+			}
+			else if (this.value == 'Background') {
+				//alert("Background");
+				$('.selection')
+					.empty()
+					.append('<option selected="selected" value="select">Please Select an Application</option>');
+				
+				populateSelect(window.data2);
+			}
+		});
+	
+		$('.selection2').on('change',function(blah) {
+			//console.log($(this).val());
+			//console.log(global_data);
+			var app=($(this).val());
+			console.log(app);
+			$('.selection').val('select');
+			d3.select('svg').remove();
+				
+			var appObj = BuildObj(window.data2,app);
+			//var empty_bins = window.new_bins;
+			var appBins = populateBins(appObj);
+			window.appBins=appBins;
+			BuildChart(appBins);
+			
+		});
+		
+		d3.select(window).on('resize', resize); 
+
+		function resize() {
+			// update width and height.
+			var w2 = parseInt(d3.select('#bar3').style('width'), 10);
+			console.log("div width", w2);
+			h2 = parseInt(d3.select('#bar3').style('height'), 10);
+			console.log("div height", h2);
+			d3.select('svg').remove();
+			var appBins = window.appBins;
+			BuildChart(appBins);
+		};
+		
+		
+	});
+		
+		
+		/*d3.json('offline_data/Traffic_data/TrafficVolume_ByApp_mbar.json', function(data){
+					console.log("Foreground launched");
+					BuildChart(data);
+				});
+		$('input[type=radio][name=Interaction]').on('change',function() {
+			if (this.value == 'Foreground') {
+				//alert("Foreground");
+				d3.json('offline_data/Traffic_data/TrafficVolume_ByApp_mbar.json', function(data){
+					console.log("Foreground launched");
+					BuildChart(data);
+				});
+			}
+			else if (this.value == 'Background') {
+				//alert("Background");
+				d3.json('offline_data/Traffic_data/TrafficVolume_ByApp_mbar2.json', function(data){
+					console.log("Background launched");
+					BuildChart(data);
+				});
+			}
+		});*/
+		
+		
+		
+				
+		/*
+		// Create Bar Chart
+			function BuildChart(data){
+				
+				console.log("Success");
+				// Put all the values from both keys (runtime, interacttime) in a variable called 'j' and find the highest value to determine scale
+				var j=[];
+				var s={};
+				var r={};
+				var keys=[];
+				console.log(data);
+				//console.log(d3.keys(data));
+				
+				data.forEach(function(d,i){
+					//console.log(d);
+					keys[i]=d.key;
+										
+					//console.log(d.values);
+					//console.log(r);
+					d.values.sort(dynamicSort("-total"));
+					d.values.forEach(function(e,i){
+						//console.log(e.label);
+						j.push(e.value);
+						
+					});
+				});
+				console.log(j);
+				// determines the highest value
+				var maxVal=d3.max(j);
+				var minVal=d3.min(j);
+				var scale = '';
+				// create the scale
+				if (maxVal>= 1000000000){
+					scale='gigabytes';
+				} else if (maxVal<1000000000 && maxVal>=1000000){
+					scale='megabytes';
+				} else {
+					scale='kilobytes';
+				}
+				console.log(scale);
+				
+				var format = d3.time.format.utc("%Y-%m-%d");
+				//console.log(format.parse("2016-03-15"));
+				
+				console.log("r =", r);
+				console.log("s =", s);
+				console.log("keys =",keys);
+				
+
+				// Create and load chart
+				nv.addGraph(function() {
+					var chart = nv.models.multiBarChart()
+						.x(function(d) { return d.name; })
+						.y(function(d) { 
+							switch (scale){
+								case 'gigabytes':
+									return (d.value/1000000000.0);	//assuming data is in bytes
+									break;
+								case 'megabytes':
+									return (d.value/1000000.0);	//assuming data is in bytes
+									break;
+								case 'kilobytes':
+									return d.value/1000.0; //assuming data is in bytes
+									break;
+							}
+							})
+						.margin({top: 30, right: 80, bottom: 80, left: 100})
+						.showControls(true)        //Allow user to switch between "Grouped" and "Stacked" mode.
+						//.stacked(true)
+						//.height(height)
+						//.reduceXTicks(false)
+						.staggerLabels(true); // Stagger labels
+						//.rotateLabels(-45); // Or Rotate them 45 degrees
+
+						chart.yAxis
+							//.tickFormat(function(d){return milisecondsToComplete(d)}/*d3.format(',.2f'))
+							.tickFormat(d3.format(',.2f'))
+							.axisLabel('Traffic Volume ('+scale+')');
+						chart.xAxis
+							.axisLabel('Applications')
+							.axisLabelDistance(20);
+							//.tickFormat(function(d){return d3.time.format.utc("%Y-%m-%d")(new Date(d));});
+
+						var color_array = ["#ffbf00","#0e492d","#67aded"];
+						// Dynamic yAxis Range
+						var upper_lim=0;
+						if (scale=='gigabytes') {
+							maxVal=maxVal/1000000000;
+							upper_lim=Math.floor(maxVal)+2;
+						} else if (scale=='megabytes') {
+							maxVal=maxVal/1000000;
+							upper_lim=Math.floor(maxVal)+10;
+						} else if (scale=='kilobytes') {
+							maxVal=maxVal/1000;
+							upper_lim=Math.floor(maxVal)+100;
+						}
+						// logging upper_lim
+						console.log(upper_lim);
+						// Force yAxis range
+						chart.forceY([0,upper_lim]);
+						//chart.color(function(d,i){
+							//return color_array[i];
+						//});
+						chart.color(["#ff7f0e","#102263","#2CA02C", "#d62728","#ffbb78", "#f7fe2e", "#142da9","#636363"]);
+						chart.tooltip.enabled(true);
+						// Tooltip formatting for easier readability
+						chart.tooltip.contentGenerator(function (d) {
+							//console.log(d);
+							var html = "<h5 align='center'>Application: "+d.data.name+"</h5>";
+							//var s='';
+							//console.log(d.data);
+							//console.log(d.data.key);
+							//console.log(d.data.value);
+							var key=d.data.key;
+							var result=formatBytes(d.data.value);
+							//console.log(s);
+							html+="<p>"+key+": "+result+"</p>";
+							return html;
+						});
+						
+						d3.select('#bar3 svg')
+							.datum(data)
+							.transition().duration(500)
+							.call(chart);
+
+						nv.utils.windowResize(chart.update);
+						
+						
+						return chart;
+						
+					});
+				
+			};*/
+		
+	
+	
+	</script>
+</body>
+
+</html>

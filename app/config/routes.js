@@ -34,7 +34,7 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
-  }
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +45,14 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+    'GET /testhome': { view: 'test' },
+    'GET /activity': 'TestController.getActivitiesTimeSeries',
+    'GET /session': 'TestController.getSessionsTimeSeries',
+    'GET /application': 'TestController.getApplicationTimeSeries',
+    'GET /network': 'TestController.getNetworkTimeSeries',
+    'GET /testController01': 'TestController.runTest01',
+    'GET /testController02': 'TestController.runTest02'
+
+
 
 };

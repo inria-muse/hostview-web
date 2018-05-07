@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin - Bootstrap Admin Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+	<link type="text/css" rel="stylesheet" href="css/jquery.qtip.min.css" />
+	<!--Optional hostview css>-->
+	<!--<link rel="stylesheet" href="https://muse.inria.fr/hostview-dev/styles/hostview.css">-->
+	<!--D3 style sheet by D3 creator (not necessary)-->
+	<link type="text/css" href="js/d3_style.css" rel="stylesheet" />
+	<link href="css/common_styles.css" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="js/nv.d3.css" rel="stylesheet" type="text/css">
+	<script src="js/D3.js"></script>
+    <!--<script src="js/db.js"></script>-->
+	<script src="js/jquery.js"></script>
+	<script src="js/nv.d3.js"></script>
+    <script src="js/stream_layers.js"></script>
+	<!--<script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.min.js"></script>-->
+	<script src="js/jquery.qtip.min.js"></script>
+	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+	<script src="https://cdn.jsdelivr.net/lodash/4.13.1/lodash.min.js"></script>
+	<script src="https://d3js.org/d3-queue.v3.min.js"></script>
+	<!--bootstrap and moment.js-->
+	<!--<script type="text/javascript" src="https://muse.inria.fr/hostview-dev/js/moment.min.js"></script>-->
+	<script src="js/moment.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<style type="text/css">
+	.nvd3 .nv-x .nv-axis .nv-axislabel {
+		font-weight:bold;
+	}
+	.nvd3 .nv-y .nv-axis .nv-axislabel {
+		font-weight:bold;
+	}
+	#bar1 {
+		text-align:center;
+	}
+	</style>
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="dashboard_draft.html">Hostview</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>John Smith</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <a href="dashboard_draft.html"><i class="fa fa-fw fa-dashboard"></i> My dashboard</a>
+                    </li>
+					<li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-bar-chart"></i> Details <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="application.html"><i class="fa fa-fw fa-desktop"></i> Applications</a>
+                            </li>
+                            <li class="active">
+                                <a href="usage.html"><i class="fa fa-fw fa-clock-o"></i> Device Activity</a>
+                            </li>
+							<li>
+                                <a href="networks.html"><i class="fa fa-fw fa-wifi"></i> Networks</a>
+                            </li>
+							<li>
+                                <a href="traffic_summary.html"><i class="fa fa-fw fa-sliders"></i> Traffic Statistics</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Device Usage
+                            <!-- <small>Subheading</small> -->
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="dashboard_draft.html">Dashboard</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-clock-o"></i> Device Usage
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+                        <div class="panel panel-green">
+                            <div class="panel-heading" title="usage">
+                                <h3 class="panel-title"><i class="fa fa-clock-o"></i> Logged on VS Active Usage
+								<div class="pull-right"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i><span class="large-time"></span><span class="short-time"></span><b class="caret"></b></div>
+								</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="flot-chart" id="bar1_container">
+                                    <div class="flot-chart-content" id="bar1">
+										
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <!--<script src="js/jquery.js"></script>-->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+
+
+
+		Number.prototype.toFixedDown = function(digits) {
+			var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
+				m = this.toString().match(re);
+			return m ? parseFloat(m[1]) : this.valueOf();
+		};
+		// Tooltip
+		$('[title="usage"]').qtip({
+			content:{
+				text:'Duration that device has been logged into VS the duration that user has actively used the device'
+			},
+			position: {
+				my: 'bottom center',
+				at:'top center',
+				target: 'mouse'
+			},
+			style:{
+				classes:'qtip-dark qtip-bootstrap'
+			}
+		});
+		//Time Formatting
+		function formatTime(d) {
+			var s='';
+			var day = 60*60*24;
+			var hour = 60*60;
+			var minute = 60;
+				//console.log(d);
+			if(d/day>1){
+				s = s + Math.floor(d/day) + " Days";
+				d = d - Math.floor(d/day)*day;
+			}
+			if(d/hour>1){
+				s = s + " " + Math.floor(d/hour) + " Hours";
+				d = d - Math.floor(d/hour)*hour;
+			}
+			if(d/minute>1){
+				s = s + " " + Math.floor(d/minute) + " Minutes";
+				d = d - Math.floor(d/minute)*minute;
+			}
+			// round seconds to 2 decimal places using toFixedDown
+			if(d > 0) {
+				s = s + " " + d.toFixedDown(2) + " Seconds";
+			}
+			return s;
+
+		};
+		// sorting function
+		function dynamicSort(property) {
+		var sortOrder = 1;
+			if(property[0] === "-") {
+				sortOrder = -1;
+				property = property.substr(1);
+			}
+			return function (a,b) {
+				var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+				return result * sortOrder;
+			}
+		};
+		// function to add minutes
+
+		function addMinutes(date, minutes) {
+				return new Date(date.getTime() + minutes*60000);
+			};
+
+
+
+function httpGetAsync(theUrl, callback)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function() {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+        callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    xmlHttp.send(null);
+}
+
+
+
+		$(function() {
+
+
+			// Pre-populate the daterange field with last 7 days interval.
+			//$('.pull-right .large-time').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+			function cb(start, end, label) {
+			  console.log("New date range selected: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + " (predefined range: " + label + ")");
+			  $('.pull-right .large-time').html(" "+start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY')+" ");
+			  start._d.setHours(00);
+			  start._d.setMinutes(00);
+			  start._d.setSeconds(00);
+			  end._d.setHours(23);
+			  end._d.setMinutes(59);
+			  end._d.setSeconds(59);
+			  //use the start._d and end._d as the range to pull data from the DB.
+			  console.log("new start",start._d);
+			  console.log("new end",end._d);
+			};
+
+			cb(moment().subtract(6, 'days'), moment());
+
+			$('.pull-right').daterangepicker({
+				"linkedCalendars": false,
+				"alwaysShowCalendars": true,
+				"startDate": moment().subtract(6, 'days'),
+				"endDate": moment(),
+				"minDate": "01/01/2016",
+				"maxDate": "06/31/2016",
+				ranges: {
+				   'Today': [moment(), moment()],
+				   'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				   'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				   'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				   'This Month': [moment().startOf('month'), moment().endOf('month')],
+				   'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				}
+			}, cb);
+
+			$('.pull-right').on('apply.daterangepicker', function(ev, picker) {
+			  window.picker=picker;
+			  console.log(picker.startDate.format('YYYY-MM-DD'));
+			  console.log(picker.endDate.format('YYYY-MM-DD'));
+			  //console.log(picker.startDate._d);
+			  //console.log(picker.endDate._d);
+			  $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+			  //console.log($(this));
+			});
+
+			$('.pull-right').on('cancel.daterangepicker', function(ev, picker) {
+				  $(this).val('');
+			});
+
+
+			// Load data into objects
+
+            var dbURL = "http://localhost:1337/"; //todo put it in config file or env ...
+			var days=[];
+			var hours=[];
+			var graph_data=[];
+			var networks=[];
+			var bins=[];
+			var binny=[];
+			var graph_data2=[];
+			var Data_url = 'offline_data/Usage_data/on_vs_usage2.json';
+
+
+
+			var colors = [ ["Logged-On", "#ff7f0e"],
+					   ["Activity", "#1f77b4"] ];
+
+			console.log(Data_url);
+			var format = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
+			var format2 = d3.time.format("%Y/%m/%d");
+			var format3 = d3.time.format("%Y-%m-%dT%H:%M:%S.%L");
+            var format4 = d3.time.format("%Y-%m-%dT%H:%M:%S.%LT");
+
+          
+            console.log(format.parse("2016-03-15T15:09:26.688Z"));
+
+
+          var q = d3.queue()
+				.defer(d3.json, dbURL+'activity' /*'offline_data/Usage_data/on_vs_usage2.json'*/) // data object containing query data from activity table
+				.defer(d3.json, dbURL+'session') // data object containing query data from sessions table
+				.await(analyze);
+
+			function analyze (error, data1, data2) {
+			  if (error) throw error;
+	// populate Data 1 - activity
+      
+				data1.forEach(function(d,i){
+                  var endDate = new Date();
+                  var startDate = new Date();
+                  var startTime = format.parse(d.start);
+                  var endTime = format.parse(d.end);
+                  var timezoneOffset = startTime.getTimezoneOffset() * 60 * 1000;
+                      
+                  startTime.setTime(startTime.getTime()-timezoneOffset);
+                  endTime.setTime(endTime.getTime()-timezoneOffset);
+
+                      
+                  startDate.setTime(startTime);
+                  endDate.setTime(endTime);
+                      
+                  var offset = 0;
+                  var startingDay = startTime.getDate();
+                  var endingDay = endTime.getDate();
+                      
+                  var endDay = endTime.getDate();
+
+                  while(startingDay+offset<=endDay){
+                      //console.log(format.parse(d.time));
+                      //var startDate=format.parse(d.start);
+                      //var endDate=format.parse(d.end);
+                      //console.log(startDate);
+                      if(offset>0){
+                        startDate.setTime(Math.floor((startTime.getTime()+24*60*60*1000*offset)/(24*60*60*1000))*24*60*60*1000+timezoneOffset) ;
+                      }
+                      if(endingDay > (startingDay+offset)){
+                        endDate.setTime(Math.ceil((startTime.getTime()-timezoneOffset+24*60*60*1000*offset)/(24*60*60*1000))*24*60*60*1000+timezoneOffset-1);
+                      } else {
+                        endDate.setTime(endTime);
+                      }
+                      
+                      
+                      var time_in_minutes = Math.floor((startDate.getTime()/1000)/60);
+                      var time_in_bin=(Math.floor(time_in_minutes/5))*5;
+                      var bin_start = new Date(time_in_bin*60*1000);
+                      var bin_end = addMinutes(bin_start, 5);
+                      //var endDate=format.parse(d.end);
+                      var year = startDate.getFullYear();
+                      var month = startDate.getMonth()+1;
+                      var day = startDate.getDate();
+                      var hour=startDate.getHours();
+                      
+                      
+                      //var minute=startDate.getMinutes();
+                      //var second=startDate.getSeconds();
+                      var d1=year+"/"+month+"/"+day;
+                      
+                      //d1=format2.parse(d1);
+                      
+                      bins.push({
+                                binStart:bin_start,
+                                binEnd:bin_end,
+                                value:0,
+                                day:d1
+                                });
+                      graph_data.push({
+                                      start:new Date(startDate.getTime()),
+                                      end:new Date(endDate.getTime()),
+                                      day:d1,
+                                      binStart:bin_start,
+                                      binEnd:bin_end
+                                      });
+                      days.push({
+                                day:d1
+                                });
+                      hours.push({
+                                 hour:hour
+                                 });
+                      offset++;
+                  }
+				});
+				// Populate Data2 - Logged On
+				data2.forEach(function(d,i){
+                      var start = new Date();
+                      var end = new Date();
+                      
+                      var startDate = format.parse(d.start);
+                      var endDate = format.parse(d.end);
+                      var timezoneOffset = startDate.getTimezoneOffset() * 60 * 1000;
+
+                      startDate.setTime(startDate.getTime()-timezoneOffset);
+                      endDate.setTime(endDate.getTime()-timezoneOffset);
+                      
+                      var offset = 0;
+
+                      start.setTime(startDate);
+                      end.setTime(endDate);
+                      
+                      var startingDay = start.getDate();
+                      var endingDay = end.getDate();
+                      var endDay = end.getDate();
+
+                      while(startingDay+offset<=endDay){
+                      //console.log(format.parse(d.time));
+                      //var startDate=format.parse(d.start);
+                      //var endDate=format.parse(d.end);
+                      //console.log(startDate);
+                        if(offset>0){
+                          start.setTime(Math.floor((startDate.getTime()-timezoneOffset+24*60*60*1000*offset)/ (24*60*60*1000))*24*60*60*1000+timezoneOffset);
+                        }
+                        if(endingDay > (startingDay+offset)){
+                          end.setTime(Math.ceil((startDate.getTime()-timezoneOffset+24*60*60*1000*offset)/(24*60*60*1000))*24*60*60*1000+timezoneOffset-1);
+                        } else {
+                        end.setTime(endDate);
+                        }
+
+                      
+                      
+					//var start=format.parse(d.start);
+					//var end=format.parse(d.end);
+                      var year = start.getFullYear();
+                      var month = start.getMonth()+1;
+                      var day = start.getDate();
+                      var d1=year+"/"+month+"/"+day;
+                      var hour=start.getHours();
+
+                      graph_data2.push({
+						start: new Date(start.getTime()),
+						end: new Date(end.getTime()),
+						day:d1
+						//duration:d.value
+                      });
+                        
+                              
+                    //TODO FIX THIS!! if we have sessions across multiple days, only the starting day is selected!
+                      days.push({
+                        day:d1
+                      });
+                      hours.push({
+                        hour:hour
+                      });
+                      offset++;
+                      }
+				});
+					//console.log(graph_data2);
+					//console.log(graph_data);
+					//console.log(bins);
+
+					// remove duplicates from days array
+					var uniq_days = days.reduce(function(a,b){
+						if (a.indexOf(b.day) < 0 ) a.push(b.day);
+						return a;
+					  },[]);
+
+					 // delete all duplicates from the array
+					for( var i=0; i<days.length-1; i++ ) {
+						  if ( days[i].day == days[i+1].day ) {
+							delete days[i];
+						  }
+						}
+					// remove the "undefined entries"
+					days = days.filter( function( el ){ return (typeof el !== "undefined"); } );
+					//Sort Hours array
+					hours.sort(dynamicSort("hour"));
+                    days.sort(dynamicSort("day"));
+
+					// remove duplicates from hours array
+					// delete all duplicates from the array
+					for( var i=0; i<hours.length-1; i++ ) {
+						  if ( hours[i].hour == hours[i+1].hour ) {
+							delete hours[i];
+						  }
+						}
+					// remove the "undefined entries"
+					hours = hours.filter( function( el ){ return (typeof el !== "undefined"); } );
+					console.log(hours);
+
+					// remove duplicates from bins array
+					function Compjects(a,b){
+						 return a.binStart.getTime()===b.binStart.getTime() && a.binEnd.getTime()===b.binEnd.getTime();
+					}
+					var new_bins=_.uniqWith(bins, Compjects);
+					//console.log(new_bins);
+
+					//console.log(uniq_days);
+					//console.log(days);
+					//console.log(uniq_bins);
+
+					// Create a new data object for grouping activity periods together
+					var new_bins3=[];
+					//var beg=0;
+					var en=0;
+					//var index=0;
+					var len2=graph_data.length;
+					var counter=0;
+					var c2=0;
+					for (var l=0; l<len2;){
+						//lim=
+						//counter=0;
+						// old condition (2000+ points but accurate) - graph_data[l].end.getTime()==graph_data[l+1].start.getTime()
+						// new condition groups then even if 35 seconds apart - less data points but less accurate
+						if (l+1<len2 && graph_data[l].end.getTime()+35000>=graph_data[l+1].start.getTime() &&
+                            graph_data[l].start.getDate()==graph_data[l+1].start.getDate()){
+							//beg=l;
+							counter=counter+1;
+							l++;
+						} else {
+							en= l;
+							new_bins3.push({
+								start:graph_data[en-c2].start,
+								end:graph_data[en].end,
+								day:graph_data[en-c2].day
+								//value:
+							});
+							counter=0;
+							l++;
+						}
+						c2=counter;
+					}
+					console.log(new_bins3);
+
+					//console.log(binny);
+
+					var width = parseInt(d3.select('#bar1').style('width'), 10);
+					console.log("div width", width);
+					var height = parseInt(d3.select('#bar1').style('height'), 10);
+					console.log("div height", height);
+
+					window.graph_data2=graph_data2;
+					window.days=days;
+					window.hours=hours;
+					window.new_bins3=new_bins3;
+					window.colors=colors;
+
+					draw(width, height);
+
+			};
+
+			function draw(width,height){
+
+					var pad = 30;
+					var left_pad = 130;
+
+					var margin = {
+							top: 20,
+							bottom: 10,
+							left: 50,
+							right: 40
+						};
+					var w = width - margin.left - margin.right;
+					var h = height - margin.top - margin.bottom;
+
+					var graph_data2=window.graph_data2;
+					var days=window.days;
+					var hours=window.hours;
+					var new_bins3=window.new_bins3;
+					var colors=window.colors;
+
+
+					//Plotting Graph
+
+					var low=d3.min(hours, function(d){return d.hour;});
+					var high=d3.max(hours, function(d){return d.hour;});
+					//console.log(low,high);
+					//console.log(d3.extent(hours, function(d){return d.hour;}));
+					//X scale
+					var x = d3.scale.linear().domain([low-1, high+2]).range([left_pad, w-pad]);
+					//var x = d3.scale.linear()
+						//	.domain(hours.map[8, 20])
+						//	.range([left_pad, w-pad]);
+					// Y scale
+					var y = d3.scale.ordinal()
+							.domain(days.map(function(d){
+								return d.day;
+							}))
+							.rangeBands([pad,h-pad*2]);
+					// X axis
+					var xAxis = d3.svg.axis().scale(x).orient("bottom")
+							.ticks(13)
+							.tickFormat(function (d, i) {
+								return d;
+							});
+							//.tickFormat(function(d){return d3.time.format("%H:%M")(new Date(d));});
+					// Y Axis
+					var yAxis = d3.svg.axis().scale(y).orient("left")
+							.tickFormat(function(d){return d3.time.format("%Y/%m/%d")(new Date(d));})
+							.ticks(days.length);
+					// X gridlines
+					function make_x_axis() {
+						return d3.svg.axis()
+							.scale(x)
+							 .orient("bottom")
+							 .ticks(13)
+					}
+					// Y gridlines
+					function make_y_axis() {
+						return d3.svg.axis()
+							.scale(y)
+							.orient("left")
+							.ticks(days.length)
+					}
+					// Function for activity bar position
+					var rectTransform = function(d) {
+						//var time1 = d.binStart;
+						var time1=d.start;
+						//var time2 = format.parse(d.endDate);
+						var t1=time1.getHours()+(time1.getMinutes()/60)+(time1.getSeconds()/3600);
+						//var t2=time.getHours()+(time.getMinutes()/60);
+						return "translate(" + x(t1) + "," + y(d.day) + ")";
+					};
+					// Function for logged-on bar position
+					var rectTransform2 = function(d) {
+						var time1 = d.start;
+						//var time2 = format.parse(d.endDate);
+						var t1=time1.getHours()+(time1.getMinutes()/60)+(time1.getSeconds()/3600);
+						//var t2=time.getHours()+(time.getMinutes()/60);
+                        //console.log(d + " " + "translate(" + x(t1) + "," + y(d.day) + ")");
+
+						return "translate(" + x(t1) + "," + y(d.day) + ")";
+					};
+					// D3 Tooltip 1 for logged-on bars
+					var tip = d3.tip()
+					  .attr('class', 'd3-tip')
+					  .offset([-10, 0])
+					  .html(function(d) {
+						var start = d3.time.format("%a %b %d %Y %H:%M:%S")(d.start);
+						var end = d3.time.format("%a %b %d %Y %H:%M:%S")(d.end);
+						//console.log(start);
+						var html = "<strong>Logged-On</strong> <span style='color:red'></span></br>";
+						html+= "<strong>Start:</strong> <span style='color:red'>" + start + "</span></br>";
+						html+= "<strong>End:</strong> <span style='color:red'>" + end + "</span>";
+						return html;
+					  });
+
+					// D3 Tooltip 2 for activity bars
+					var tip2 = d3.tip()
+					  .attr('class', 'd3-tip')
+					  .offset([-10, 0])
+					  .html(function(d) {
+						var start = d3.time.format("%a %b %d %Y %H:%M:%S")(d.start);
+						//var time2 = addMinutes(d.binStart, (d.value/60));
+						var end = d3.time.format("%a %b %d %Y %H:%M:%S")(d.end);
+						//console.log(start);
+						var html = "<strong>Activity</strong> <span style='color:red'></span></br>";
+						html+= "<strong>Start:</strong> <span style='color:red'>" + start + "</span></br>";
+						html+= "<strong>End:</strong> <span style='color:red'>" + end + "</span>";
+						return html;
+					  });
+
+					// Plot SVG Elements
+					var svg = d3.select("#bar1")
+					.append("svg")
+					.attr("width", w)
+					.attr("height", h);
+
+					/*var svg = d3.select("#bar2")
+						.append("div")
+						.classed("svg-container", true) //container class to make it responsive
+						.append("svg")
+						//responsive SVG needs these 2 attributes and no width and height attr
+						.attr("preserveAspectRatio", "xMinYMin meet")
+						.attr("viewBox", "0 0 1152 864")
+						//class to make it responsive
+						.classed("svg-content-responsive", true);*/
+
+					svg.call(tip);
+					svg.call(tip2);
+					// X axis
+					svg.append("g")
+						.attr("class", "x axis")
+						.attr("transform", "translate(0, "+(h-(pad+15))+")")
+						.call(xAxis);
+					 // Y axis
+					svg.append("g")
+						.attr("class", "y axis")
+						.attr("transform", "translate("+(left_pad-pad)+", 0)")
+						.call(yAxis);
+					// Y axis label
+					svg.select(".y.axis")
+						.append("text")
+						.attr("x", 0)
+						.attr("y", 0)
+						.style("text-anchor", "middle")
+						.attr("transform", "translate(-85," + h/2 + ") rotate(-90)")
+						.text("Days");
+					// X axis label
+					svg.select(".x.axis")
+						.append("text")
+						.attr("x", 0)
+						.attr("y", 0)
+						.style("text-anchor", "middle")
+						.attr("transform", "translate(" + w/2 + ",40)")
+						.text("Time of Day");
+
+					// X axis gridlines
+					svg.append("g")
+						.attr("class", "grid")
+						.attr("transform", "translate(0," + (h-(pad+15)) + ")")
+						.call(make_x_axis()
+							.tickSize(-(h-pad-pad), 0, 0)
+							.tickFormat("")
+						)
+					// Y axis gridlines
+					svg.append("g")
+						.attr("class", "grid")
+						.attr("transform", "translate("+(left_pad-pad)+", 0)")
+						.call(make_y_axis()
+							.tickSize(-(w-pad-pad*3), 0, 0)
+							.tickFormat("")
+						)
+					// add legend
+					var legend = svg.append("g")
+						.attr("class", "legend")
+						//.attr("x", w - 65)
+						//.attr("y", 50)
+						.attr("height", 100)
+						.attr("width", 100)
+						.attr('transform', 'translate(-20,50)');
+
+					// legend Boxes
+					var legendRect = legend.selectAll('rect').data(colors);
+
+					legendRect.enter()
+						.append("rect")
+						.attr("x", w - 65)
+						.attr("width", 10)
+						.attr("height", 10);
+
+					legendRect
+						.attr("y", function(d, i) {
+							return i * 20;
+						})
+						.style("fill", function(d) {
+							return d[1];
+						});
+					// Legend text
+					var legendText = legend.selectAll('text').data(colors);
+
+					legendText.enter()
+						.append("text")
+						.attr("x", w - 52);
+
+					legendText
+						.attr("y", function(d, i) {
+							return i * 20 + 9;
+						})
+						.text(function(d) {
+							return d[0];
+						});
+
+					// bars for logged on
+					svg.selectAll(".bar")
+						.data(graph_data2)
+						.enter()
+						.append("rect")
+						.attr("class", "bar-orange")
+						//.attr("cx", function (d) { return x(d.hour); })
+						//.attr("cy", function (d) { return y(d.day); })
+						//.attr("r", 2.5);
+						//.attr("y", 0)
+						.attr("transform", rectTransform2)
+                        .attr("height", function(d,i) {console.log("rangeBand " + (y.rangeBand()-1)); return y.rangeBand()-1; })
+						.attr("width", function(d) {
+							 //return ((d.duration/3600.0)*((w-pad-left_pad)/13));
+							 //var time = format.parse(d.endDate) -  format.parse(d.startDate);
+							 //console.log(time);
+							 //var time2=(time.getHours())+(time.getMinutes()/60)+(time.getSeconds()/3600);
+							var time1 = d.start;
+							var time2 = d.end;
+							var t1=time1.getHours()+(time1.getMinutes()/60)+(time1.getSeconds()/3600);
+							var t2=time2.getHours()+(time2.getMinutes()/60)+(time2.getSeconds()/3600);
+                              /*console.log(d);
+                              console.log(t2 + " " + t1);
+                              console.log(x(t2) + " XX  " + x(t1));
+                              console.log("width " + (x(t2) - x(t1)));*/
+							 return (x(t2) - x(t1));
+						})
+						.on('mouseover', tip.show)
+						.on('mouseout', tip.hide);
+
+					// bars for activity / usage
+					svg.selectAll(".bar")
+						.data(new_bins3)
+						.enter()
+						.append("rect")
+						.attr("class", "bar-blue")
+						//.attr("cx", function (d) { return x(d.hour); })
+						//.attr("cy", function (d) { return y(d.day); })
+						//.attr("r", 2.5);
+						//.attr("y", 0)
+						.attr("transform", rectTransform)
+						.attr("height", function(d,i) { return y.rangeBand()-1; })
+						.attr("width", function(d) {
+							 //return ((d.duration/3600.0)*((w-pad-left_pad)/13));
+							 //var time = format.parse(d.endDate) -  format.parse(d.startDate);
+							 //console.log(time);
+							 //var time2=(time.getHours())+(time.getMinutes()/60)+(time.getSeconds()/3600);
+							//var time1 = d.binStart;
+							var time1 = d.start;
+							var time2 = d.end;
+							//var time2 = new Date((d.binStart.getTime())+d.value*1000);
+							var t1=time1.getHours()+(time1.getMinutes()/60)+(time1.getSeconds()/3600);
+							var t2=time2.getHours()+(time2.getMinutes()/60)+(time2.getSeconds()/3600);
+                            /*console.log(d);
+                            console.log(t2 + " " + t1);
+                            console.log(x(t2) + " XX  " + x(t1));*/
+
+							 return (x(t2) - x(t1));
+						})
+						.on('mouseover', tip2.show)
+						.on('mouseout', tip2.hide);
+			};
+				d3.select(window).on('resize', resize);
+
+				function resize() {
+					// update width
+					w3 = parseInt(d3.select('#bar1').style('width'), 10);
+					console.log("div width", w3);
+					h3 = parseInt(d3.select('#bar1').style('height'), 10);
+					console.log("div height", h3);
+					d3.select('svg').remove();
+					draw(w3,h3);
+				};
+
+		/*
+		// Bar Chart #1
+		var width_bar = 500;
+		var height_bar = 250;
+		d3.json('DeviceOn_vs_Used_byDay_fullInterval.json', function(data){
+			console.log("Success bar chart 1");
+			// Put all the values from both keys (runtime, interacttime) in a variable called 'j' and find the highest value to determine scale
+			var j=[];
+			console.log("data=", data);
+			//console.log(d3.keys(data));
+			data.forEach(function(d,i){
+				//console.log(d.key);
+				//console.log(d.values);
+				d.values.forEach(function(e,i){
+					//console.log(e.label);
+					j.push(e.value);
+
+				});
+			});
+			console.log("max value, j=", j);
+			// determines the highest value
+			var maxVal=d3.max(j);
+			var minVal=d3.min(j);
+			var scale = '';
+			// create the scale
+			if (maxVal>= 3600){
+				scale='hours';
+			} else if (maxVal<3600 && maxVal>=60){
+				scale='minutes';
+			} else {
+				scale='seconds';
+			}
+			console.log("scale= ", scale);
+
+			var format = d3.time.format.utc("%Y-%m-%d");
+			//console.log(format.parse("2016-03-15"));
+			// Create and load chart
+			nv.addGraph(function() {
+				var chart = nv.models.multiBarChart()
+					.x(function(d) { return format.parse(d.day); })
+					.y(function(d) {
+						switch (scale){
+
+							case 'hours':
+								return (d.value/3600.0);
+								break;
+							case 'minutes':
+								return (d.value/60.0);
+								break;
+							case 'seconds':
+
+								return d.value;
+								break;
+						}
+						})
+					.margin({top: 30, right: 80, bottom: 60, left: 100})
+					.showControls(false)        //Allow user to switch between "Grouped" and "Stacked" mode.
+					//.height(height)
+					.reduceXTicks(false)
+					.staggerLabels(true); // Stagger labels
+					//.rotateLabels(-45); // Or Rotate them 45 degrees
+
+					chart.yAxis
+						//.tickFormat(function(d){return milisecondsToComplete(d)}/*d3.format(',.2f'))
+						.tickFormat(d3.format(',.2f'))
+						.axisLabel('Time ('+scale+')');
+					chart.xAxis
+						.axisLabel('Days')
+						.axisLabelDistance(15)
+						.tickFormat(function(d){return d3.time.format.utc("%Y-%m-%d")(new Date(d));});
+					//var o = d3.scale.ordinal()
+							//.domain(["foo", "bar"])
+							//.range(["#1f77b4","#2ca02c"]);
+					var color_array = ["#f7fe2e","#052645"];
+					// Dynamic yAxis Range
+					var upper_lim=0;
+					if (scale=='hours') {
+						maxVal=maxVal/3600;
+						upper_lim=Math.floor(maxVal)+2;
+					} else if (scale=='minutes') {
+						maxVal=maxVal/60;
+						upper_lim=Math.floor(maxVal)+10;
+					} else if (scale=='seconds') {
+						upper_lim=Math.floor(maxVal)+1000;
+					}
+					// logging upper_lim
+					console.log("upper lim chart1=",upper_lim);
+					// Force yAxis range
+					chart.forceY([0,upper_lim]);
+					//chart.color(function(d,i){
+						//return color_array[i];
+					//});
+					chart.color(["#ff7f0e","#102263","#2CA02C", "#d62728","#ffbb78", "#f7fe2e", "#142da9","#636363"]);
+					chart.tooltip.enabled(true);
+					// Tooltip formatting for easier readability
+					chart.tooltip.contentGenerator(function (d) {
+						//console.log(d);
+						var time=formatTime(d.data.value);
+						//console.log(time);
+						var html = "<h5 align='center'>Series: "+d.data.key+"</h5>";
+						html+="<p>Day: "+d.data.day+"</p>";
+						html+="<p>Time: "+time+"</p>";
+						return html;
+					});
+
+
+					d3.select('#bar1 svg')
+						.datum(data)
+						.transition().duration(500)
+						.call(chart);
+
+					nv.utils.windowResize(chart.update);
+
+					chart.multibar.dispatch.on("elementClick", function(e) {
+						console.log(e);
+						console.log($(this));
+						console.log(e.data);
+						//loadsecondgraph(e.data);
+					});
+
+					return chart;
+
+				});
+
+		});*/
+	});
+	</script>
+</body>
+
+</html>
