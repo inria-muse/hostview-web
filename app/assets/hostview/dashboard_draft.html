@@ -23,7 +23,7 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link href="js/nv.d3.css" rel="stylesheet" type="text/css">
 	<script src="js/D3.js"></script>
-	<script src="js/jQuery.js"></script>
+	<script src="js/jquery.js"></script>
 	<script src="js/nv.d3.js"></script>
     <script src="js/stream_layers.js"></script>
 	<script src="https://cdn.jsdelivr.net/lodash/4.11.2/lodash.min.js"></script>
@@ -433,7 +433,7 @@
                     <div class="col-lg-6">
                         <div class="panel panel-yellow">
                             <div class="panel-heading" title="networks">
-                                <h3 class="panel-title"><i class="fa fa-wifi"></i> Network's connected to in the last week </h3>
+                                <h3 class="panel-title"><i class="fa fa-wifi"></i> Network's connected to in the last week (TODO) </h3>
                             </div>
                             <div class="panel-body">
                                 <div class="flot-chart" id="bar2_container">
@@ -449,8 +449,8 @@
                     </div>
 					<div class="col-lg-6">
                         <div class="panel panel-red">
-                            <div class="panel-heading" title="traffic">
-                                <h3 class="panel-title"><i class="fa fa-sliders"></i> Traffic Volume by Application</h3>
+                            <div class="pa`el-heading" title="traffic">
+                                <h3 class="panel-title"><i class="fa fa-sliders"></i> Traffic Volume by Application (TODO)</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="pie2_3_container">
@@ -515,6 +515,9 @@
 				}
 			});
 		});*/
+    
+    var dbURL = "http://localhost:1337/"; //todo put it in config file or env ...
+
 		$('[title="apps"]').qtip({
 			content:{
 				text:'Applications that were actively interacted with in the Foreground'
@@ -575,6 +578,8 @@
 		var d2;
 		var days, hours, minutes, seconds;
 		var format2= d3.time.format.utc("%Y-%m-%d");
+        var long_format = d3.time.format("%Y-%m-%dT%H:%M:%S.%LZ");
+        var interval_format = d3.time.format("%d days .....");
 		console.log(format2.parse("2016-03-31"));
 		//var format3=d3.time.format("%H:%M:%S.%L");
 		//console.log(format3.parse("51:15:18.966"));
@@ -630,19 +635,22 @@
 		}; 
 		
 		// Alerting the last day PC was used
-		d3.json('offline_data/Dashboard_data/lastday_data_received.json', function(data){
+        //TODO
+		//d3.json('offline_data/Dashboard_data/lastday_data_received.json', function(data){
+        d3.json(dbURL+'last_update', function(data){
 			//console.log(data);
 			//console.log(d3.keys(data));
 			//console.log(data[0].lastdayofdata);
 			//console.log(format2.parse(data[0].lastdayofdata));
-			d2=format2.parse(data[0].lastdayofdata);
+			d2=long_format.parse(data[0].lastdayofdata);
 			//console.log(d2);
-			days=data[0].day;
-			hours=data[0].hour;
-			minutes=data[0].minute;
-			seconds=data[0].second;
+                //todo
+            days=data[1].amount_data.days;//data[0].
+            hours=data[1].amount_data.hours;
+			minutes=data[1].amount_data.minutes;
+			seconds=data[1].amount_data.seconds;
 			$("#adhir").html("Last day we received data from you: " + d2.toDateString());
-			$("#alertbar strong").html("Last day we received data from you: " + d2.toDateString() + ", Total Data Collected: " + days + " days, "+hours+" hours, "+minutes+" minutes, and "+seconds+" seconds");
+			$("#alertbar strong").html("Last day we received data from you: " + d2.toDateString() + ", Total Data Collected: " + days + " days, "+ hours+" hours, " + minutes+" minutes, and "+ seconds +" seconds");
 			//$("#datacollectinterval strong").html("Total Data: " + days + " days, "+hours+" hours, "+minutes+" minutes, and "+seconds+" seconds");
 		});
 		
@@ -652,14 +660,20 @@
 		// Pie Chart #1
 		var sum=0;
 		
-		d3.json('offline_data/Dashboard_data/UserApp_interaction_ByApp.json', function(data){
+		//d3.json('offline_data/Dashboard_data/UserApp_interaction_ByApp.json', function(data){
+        d3.json(dbURL+'top_apps', function(data){
 			console.log("Success pie chart 1");
 			//console.log(Object.keys(data));
 			//console.log(data);
 			var j=[];
+            var nullLabel = 0;
 			data.forEach(function(d,i){
 				//console.log(d.label);
 				//console.log(d.value);
+                if(!d.label){
+                    d.label = "label_"+nullLabel;
+                    nullLabel++;
+                }
 				sum+=d.value;
 				j.push(d.value);
 			});
@@ -729,8 +743,8 @@
 				chart.legendPosition("top");
 				//chart.labelsOutside(true);
 				chart.donut(true);
-				//chart.color(["#1f77b4","#ff7f0e","#2ca02c","#d62728","#e6550d","#8c564b","#e377c2","#7f7f7f","#393b79","#17becf"]);
-				chart.color(["#ff7f0e","#102263","#2CA02C", "#d62728","#ffbb78", "#f7fe2e", "#142da9","#636363"]);
+				chart.color(["#1f77b4","#ff7f0e","#2ca02c","#d62728","#e6550d","#8c564b","#e377c2","#7f7f7f","#393b79","#17becf"]);
+				//chart.color(["#ff7f0e","#102263","#2CA02C", "#d62728","#ffbb78", "#f7fe2e", "#142da9","#636363"]);
 				chart.title("You Interacted With");
 				chart.tooltip.enabled(true);
 				chart.tooltip.contentGenerator(function (d) {
@@ -787,7 +801,8 @@
 		// Bar Chart #1
 		var width_bar = 500;
 		var height_bar = 250;
-		d3.json('offline_data/Dashboard_data/computeron_vs_computerused_bar.json', function(data){
+        d3.json(dbURL+'logon_usage_summary', function(data){
+//		d3.json('offline_data/Dashboard_data/computeron_vs_computerused_bar.json', function(data){
 			console.log("Success bar chart 1");
 			// Put all the values from both keys (runtime, interacttime) in a variable called 'j' and find the highest value to determine scale
 			var j=[];
@@ -851,7 +866,7 @@
 			// Create and load chart
 			nv.addGraph(function() {
 				var chart = nv.models.multiBarChart()
-					.x(function(d) { return format.parse(d.day); })
+                        .x(function(d) { console.log(d); return long_format.parse(d.day); })
 					.y(function(d) { 
 						switch (scale){
 							
@@ -881,7 +896,7 @@
 					chart.xAxis
 						.axisLabel('Days')
 						.axisLabelDistance(15)
-						.tickFormat(function(d){return d3.time.format.utc("%Y-%m-%d")(new Date(d));});
+						.tickFormat(function(d){return /*d3.time.format.utc("%Y-%m-%d")*/ long_format(new Date(d));});
 					/*var o = d3.scale.ordinal()
 							.domain(["foo", "bar"])
 							.range(["#1f77b4","#2ca02c"]);*/

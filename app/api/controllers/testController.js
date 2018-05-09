@@ -11,6 +11,9 @@ getActivitiesTimeSeries: function (req, res) {
     const pg = require('pg');
     const results = [];
     
+    
+    //req: user_name; logged_at; finished_at
+    
     //todo DB ip address must be set in configuration file
     const client = new pg.Client({
                                  user: 'hostview',
@@ -33,7 +36,7 @@ getActivitiesTimeSeries: function (req, res) {
                    from activities\
                    where idle!=1 and logged_at > '2017-03-15 15:38:08.208'\
                    order by 2,3;"
-                   
+                   // where user_name == $user_name???? AND logged_at >= " + logged_at + " AND finished_at <= " + finished_at + " AND
                    /*
                    "    select session_id, date_trunc('second', logged_at) as start, date_trunc('second', finished_at) as end, (finished_at-logged_at) as duration, name\
                    from activities\
@@ -62,6 +65,227 @@ getActivitiesTimeSeries: function (req, res) {
     
 },
     
+    
+getLastActivity: function (req, res) {
+    const pg = require('pg');
+    const results = [];
+    
+    //todo DB ip address must be set in configuration file
+    const client = new pg.Client({
+                                 user: 'hostview',
+                                 host: 'postgres',
+                                 database: 'hostview',
+                                 password: 'h0stvi3w',
+                                 port: 5432
+                                 });
+    
+    client.connect((err) => {
+                   if (err) {
+                   console.error('connection error', err.stack);
+                   } else {
+                   console.log('connected');
+                   console.log("runTest after connect" );
+                   
+                   var queryStr = "select ended_at as lastdayofdata from sessions order by ended_at DESC limit 1; \
+                   select justify_hours(SUM(age(ended_at,started_at))) as amount_data from sessions;"
+                   
+                   client.query(queryStr, (err, result) => {
+                                if (err) {
+                                    console.log(err.stack);
+                                } else {
+                                    console.log("Result getLastActivity" + result);//.rows[0]);
+                                
+                                    for(var j =0; j<result.length; j++){
+                                        if(result[j].rows.length>0){
+                                            for(var i =0; i<result[j].rows.length; i++){
+                                                results.push(result[j].rows[i]);
+                                            }
+                                        }
+                                    }
+                                }
+                                console.log("runTest we are done");
+                                return res.json(results);
+                                
+                                });
+                   }
+                   });
+},
+    
+    
+getLogOnVSUsageSummary: function (req, res) {
+    const pg = require('pg');
+    const results = [];
+    
+    //todo DB ip address must be set in configuration file
+    const client = new pg.Client({
+                                 user: 'hostview',
+                                 host: 'postgres',
+                                 database: 'hostview',
+                                 password: 'h0stvi3w',
+                                 port: 5432
+                                 });
+    
+    client.connect((err) => {
+                   if (err) {
+                   console.error('connection error', err.stack);
+                   } else {
+                   console.log('connected');
+                   console.log("runTest after connect getLogOnVSUsageSummary" );
+                   
+                   var queryStr = "select make_date(CAST(date_part('year', (s.ended_at)) AS INT), CAST(date_part('month', (s.ended_at)) AS INT), CAST(date_part('day', (s.ended_at)) AS INT)) AS Day,\
+                   EXTRACT(EPOCH FROM (SUM(s.ended_at - s.started_at))) AS value\
+                   from sessions s\
+                   GROUP BY Day\
+                   ORDER BY Day;\
+                   select make_date(CAST(date_part('year', (a.logged_at)) AS INT), CAST(date_part('month', (a.logged_at)) AS INT), CAST(date_part('day', (a.logged_at)) AS INT)) AS Day,\
+                   EXTRACT(EPOCH FROM (SUM(a.finished_at-a.logged_at))) AS value\
+                   from activities a\
+                   WHERE a.idle!=1\
+                   GROUP BY Day\
+                   ORDER BY Day;"  //a.finished_at BETWEEN '2016-03-15' AND '2016-04-01'
+                   
+                   client.query(queryStr, (err, result) => {
+                                if (err) {
+                                    console.log(err.stack);
+                                } else {
+                                    console.log("Result getLogOnVSUsageSummary" + result);//.rows[0]);
+                                
+                                    if(result.length>1){
+                                        var resultLogOn = {};
+                                        resultLogOn["key"] = "LoggedOn";
+                                        resultLogOn["values"] = [];
+                                        for(var i =0; i<result[0].rows.length; i++){
+                                            resultLogOn["values"] .push(result[0].rows[i]);
+                                        }
+                                        results.push(resultLogOn);
+                                        
+                                        var resultActiveUsage = {};
+                                        resultActiveUsage["key"] = "ActivelyUsing";
+                                        resultActiveUsage["values"] = [];
+                                        for(var i =0; i<result[1].rows.length; i++){
+                                            resultActiveUsage["values"] .push(result[1].rows[i]);
+                                        }
+                                        results.push(resultActiveUsage);
+                                    }
+                                    
+                                }
+                                console.log("runTest we are done");
+                                return res.json(results);
+                                
+                                });
+                   }
+                   });
+    
+},
+    
+
+getLogOnVSUsage: function (req, res) {
+    const pg = require('pg');
+    const results = [];
+    
+    //todo DB ip address must be set in configuration file
+    const client = new pg.Client({
+                                 user: 'hostview',
+                                 host: 'postgres',
+                                 database: 'hostview',
+                                 password: 'h0stvi3w',
+                                 port: 5432
+                                 });
+    
+    client.connect((err) => {
+                   if (err) {
+                   console.error('connection error', err.stack);
+                   } else {
+                   console.log('connected');
+                   console.log("runTest after connect" );
+                   
+                   var queryStr = "select make_date(CAST(date_part('year', (a.logged_at)) AS INT), CAST(date_part('month', (a.logged_at)) AS INT), CAST(date_part('day', (a.logged_at)) AS INT)) AS Day,\
+                   EXTRACT(EPOCH FROM (SUM(a.finished_at-a.logged_at))) AS value\
+                   from activities a\
+                   WHERE a.idle!=1\
+                   GROUP BY Day\
+                   ORDER BY Day;"
+                   
+                   client.query(queryStr, (err, result) => {
+                                if (err) {
+                                console.log(err.stack);
+                                } else {
+                                console.log("Result " + result.rows[0]);
+                                if(result.rows.length>0){
+                                console.log("Result " + result.rows.length);
+                                for(var i =0; i<result.rows.length; i++){
+                                results.push(result.rows[i]);
+                                }
+                                }
+                                }
+                                console.log("runTest we are done");
+                                return res.json(results);
+                                
+                                });
+                   
+                   }
+                   });
+    
+},
+    
+    
+getTopApplication: function (req, res) {
+    const pg = require('pg');
+    const results = [];
+    
+    //todo DB ip address must be set in configuration file
+    const client = new pg.Client({
+                                 user: 'hostview',
+                                 host: 'postgres',
+                                 database: 'hostview',
+                                 password: 'h0stvi3w',
+                                 port: 5432
+                                 });
+    
+    client.connect((err) => {
+                   if (err) {
+                   console.error('connection error', err.stack);
+                   } else {
+                   console.log('connected');
+                   console.log("runTest after connect" );
+                   
+                   var queryStr = "select CASE\
+                   WHEN (a.description='') THEN lower(a.name)\
+                   ELSE lower(a.description )\
+                   END as label, EXTRACT(EPOCH from SUM(a.finished_at - a.logged_at)) as value\
+                   from activities a\
+                   where a.name!=''\
+                   AND a.pid!=0\
+                   AND a.idle!=1\
+                   group by 1\
+                   order by 2 desc\
+                   LIMIT 10;"
+
+                   client.query(queryStr, (err, result) => {
+                                if (err) {
+                                console.log(err.stack);
+                                } else {
+                                console.log("Result " + result.rows[0]);
+                                if(result.rows.length>0){
+                                console.log("Result " + result.rows.length);
+                                for(var i =0; i<result.rows.length; i++){
+                                results.push(result.rows[i]);
+                                }
+                                }
+                                }
+                                console.log("runTest we are done");
+                                return res.json(results);
+                                
+                                });
+                   
+                   }
+                   });
+    
+},
+    
+    
+    
+    
 getSessionsTimeSeries: function (req, res) {
     const pg = require('pg');
     const results = [];
@@ -83,13 +307,13 @@ getSessionsTimeSeries: function (req, res) {
                    console.log("runTest after connect" );
                    
                    //just debug
-                   var queryStr = "select id as Session, started_at as start, ended_at as end from sessions where (stop_event like 'stop' or stop_event like 'pause' or stop_event like 'suspend') and started_at > '2017-03-15 15:38:08.208' order by 2,3;"
-                   /*
-                   "select id as Session, started_at as start, ended_at as end\
+                   var queryStrDebug = "select id as Session, started_at as start, ended_at as end from sessions where (stop_event like 'stop' or stop_event like 'pause' or stop_event like 'suspend') and started_at > '2017-03-15 15:38:08.208' order by 2,3;"
+                   
+                   var queryStr = "select id as Session, started_at as start, ended_at as end\
                    from sessions\
                    where stop_event like 'stop' or stop_event like 'pause' or stop_event like 'suspend'\
                    order by 2,3;"
-                   */
+
                    
                 
                    client.query(queryStr, (err, result) => {
@@ -225,50 +449,17 @@ getNetworkTimeSeries: function (req, res) {
 runTest01: function (req, res) {
     const pg = require('pg');
     console.log("Test runTest" );
-    //var connectionString = "postgres://userName:password@serverName/ip:port/nameOfDatabase";
-    const connectionString = "postgresql://hostview:h0stvi3w@localhost:5432/hostview";
-    const connectionStringA =  "postgresql://hostview:h0stvi3w@localhost/hostview";
-    // PROCESS_DB=postgres://hostview:h0stvi3w@postgres/hostview
+    console.log(req.query["ss"]);
+   
+    //typical query: userId(user_name at the moment; hash something later??); start time; endtime;
+    if (req.query["wrong"])
+        return res.json(req.query["wrong"]);
     
-    //const pgClient = new pg.Client(connectionString);
-    //conn = psycopg2.connect(dbname='hostview', user='hostview', host='localhost', password='h0stvi3w')
     
-    const results = [];
+    if (req.query["ss"])
+        return res.json(req.query["ss"]);
     
-    //todo DB ip address must be set in configuration file
-    const client = new pg.Client({
-                                 user: 'hostview',
-                                 host: 'postgres',
-                                 database: 'hostview',
-                                 password: 'h0stvi3w',
-                                 port: 5432
-                                 });
-    
-    //client.connect();
-    client.connect((err) => {
-                   if (err) {
-                   console.error('connection error', err.stack);
-                   } else {
-                   console.log('connected');
-                   console.log("runTest after connect" );
-                   
-                   
-                   client.query("SELECT * FROM test", (err, result) => {
-                                if (err) {
-                                console.log(err.stack);
-                                } else {
-                                console.log("Result " + result.rows[0]);
-                                if(result.rows.length>0){
-                                console.log("Result " + result.rows.length);
-                                results.push(result.rows[0]);
-                                }
-                                }
-                                console.log("runTest we are done");
-                                return res.json(results);
-                                });
-                   
-                   }
-                   });
+    return res.json("");
 },
     
 runTest02: function (req, res) {

@@ -46,10 +46,15 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
     'GET /testhome': { view: 'test' },
-    'GET /activity': 'TestController.getActivitiesTimeSeries',
-    'GET /session': 'TestController.getSessionsTimeSeries',
-    'GET /application': 'TestController.getApplicationTimeSeries',
-    'GET /network': 'TestController.getNetworkTimeSeries',
+    'GET /activity': 'TestController.getActivitiesTimeSeries', //usage.html
+    'GET /session': 'TestController.getSessionsTimeSeries', //usage.html
+    'GET /application': 'TestController.getApplicationTimeSeries', //application.html
+    'GET /network': 'TestController.getNetworkTimeSeries', //network.html
+    'GET /top_apps': 'TestController.getTopApplication', //dashboard.html
+    'GET /logon_usage': 'TestController.getLogOnVSUsage',
+    'GET /logon_usage_summary': 'TestController.getLogOnVSUsageSummary',//dashboard.html
+    'GET /last_update': 'TestController.getLastActivity',  //dashboard.html
+
     'GET /testController01': 'TestController.runTest01',
     'GET /testController02': 'TestController.runTest02'
 

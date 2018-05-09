@@ -286,6 +286,8 @@
     <script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 	
+    var dbURL = "http://localhost:1337/"; //todo put it in config file or env ...
+
 	// Number (decimal) formatting function
 		Number.prototype.toFixedDown = function(digits) {
 			var re = new RegExp("(\\d+\\.\\d{" + digits + "})(\\d)"),
