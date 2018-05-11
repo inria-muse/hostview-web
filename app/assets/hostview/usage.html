@@ -348,7 +348,9 @@ function httpGetAsync(theUrl, callback)
 
 
 		$(function() {
-
+          var queryStartTime = moment().subtract(6, 'days').format('YYYY-MM-DD hh:mm:ss'); //"2017-03-02 15:38"; //used if not set up by the user
+          var queryEndTime = moment().format('YYYY-MM-DD hh:mm:ss'); //"2018-03-03 08:32:30"; //used if not set up by the user
+          var user_name = "christop"; //TODO
 
 			// Pre-populate the daterange field with last 7 days interval.
 			//$('.pull-right .large-time').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
@@ -364,6 +366,8 @@ function httpGetAsync(theUrl, callback)
 			  //use the start._d and end._d as the range to pull data from the DB.
 			  console.log("new start",start._d);
 			  console.log("new end",end._d);
+              queryStartTime = start.format('YYYY-MM-DD hh:mm:ss');
+              queryEndTime = end.format('YYYY-MM-DD hh:mm:ss');
 			};
 
 			cb(moment().subtract(6, 'days'), moment());
@@ -393,6 +397,7 @@ function httpGetAsync(theUrl, callback)
 			  //console.log(picker.endDate._d);
 			  $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
 			  //console.log($(this));
+                runQuery();
 			});
 
 			$('.pull-right').on('cancel.daterangepicker', function(ev, picker) {
@@ -427,13 +432,21 @@ function httpGetAsync(theUrl, callback)
             console.log(format.parse("2016-03-15T15:09:26.688Z"));
 
 
-          var q = d3.queue()
-				.defer(d3.json, dbURL+'activity' /*'offline_data/Usage_data/on_vs_usage2.json'*/) // data object containing query data from activity table
-				.defer(d3.json, dbURL+'session') // data object containing query data from sessions table
-				.await(analyze);
-
+          console.log(queryStartTime);
+          console.log(queryEndTime);
+          
+        ///here
 			function analyze (error, data1, data2) {
 			  if (error) throw error;
+          
+              days=[];
+              hours=[];
+              graph_data=[];
+              networks=[];
+              bins=[];
+              binny=[];
+              graph_data2=[];
+          
 	// populate Data 1 - activity
       
 				data1.forEach(function(d,i){
@@ -562,8 +575,6 @@ function httpGetAsync(theUrl, callback)
 						//duration:d.value
                       });
                         
-                              
-                    //TODO FIX THIS!! if we have sessions across multiple days, only the starting day is selected!
                       days.push({
                         day:d1
                       });
@@ -573,6 +584,7 @@ function httpGetAsync(theUrl, callback)
                       offset++;
                       }
 				});
+          
 					//console.log(graph_data2);
 					//console.log(graph_data);
 					//console.log(bins);
@@ -662,6 +674,8 @@ function httpGetAsync(theUrl, callback)
 					window.hours=hours;
 					window.new_bins3=new_bins3;
 					window.colors=colors;
+
+                    d3.select('svg').remove(); //clearing the previous graph (if any)
 
 					draw(width, height);
 
@@ -1078,6 +1092,17 @@ function httpGetAsync(theUrl, callback)
 				});
 
 		});*/
+         // };
+          function runQuery(){
+          var q = d3.queue()
+          //.defer(d3.json, dbURL+'activity?user_name=christop&start=2017-03-02 15:38:30&end=2017-03-03 08:32:30' /*'offline_data/Usage_data/on_vs_usage2.json'*/) // data object containing query data from activity table
+          .defer(d3.json, dbURL+'activity?user_name='+user_name+
+                 '&start='+queryStartTime+'&end='+queryEndTime)
+          .defer(d3.json, dbURL+'session?user_name='+user_name+
+                 '&start='+queryStartTime+'&end='+queryEndTime) // data object containing query data from sessions table
+          .await(analyze);
+          };
+          runQuery();
 	});
 	</script>
 </body>

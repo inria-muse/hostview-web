@@ -341,6 +341,10 @@ function addMinutes(date, minutes) {
 
 $(function() {
     
+    var queryStartTime = moment().subtract(6, 'days').format('YYYY-MM-DD hh:mm:ss'); //"2017-03-02 15:38"; //used if not set up by the user
+    var queryEndTime = moment().format('YYYY-MM-DD hh:mm:ss'); //"2018-03-03 08:32:30"; //used if not set up by the user
+    var user_name = "christop"; //TODO
+
     
     // Pre-populate the daterange field with last 7 days interval.
     //$('.pull-right .large-time').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
@@ -357,6 +361,8 @@ $(function() {
         end._d.setSeconds(59);
         console.log("new start",start._d);
         console.log("new end",end._d);
+        queryStartTime = start.format('YYYY-MM-DD hh:mm:ss');
+        queryEndTime = end.format('YYYY-MM-DD hh:mm:ss');
         // call Alt_bins and send the start and end time to create bins of appropriate size (based on interval).
         //Alt_bins(start._d, end._d);
     };
@@ -387,6 +393,7 @@ $(function() {
         console.log(picker.startDate._d);
         console.log(picker.endDate._d);
         $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+        LoadData();
         //console.log($(this));
         //Alt_bins(picker.startDate._d, picker.endDate._d);
     });
@@ -443,10 +450,14 @@ $(function() {
     };
     
     function LoadData(){
+        bins=[];
         //var e_bins;
         //application todo_gg
         //d3.json('offline_data/Applications_data/allApps_timeseries1.json',
-        d3.json(dbURL+'application', function (data){
+        
+        
+        d3.json(dbURL+'application?user_name='+user_name+
+                '&start='+queryStartTime+'&end='+queryEndTime, function (data){
             
             window.data=data;
             // temporary variables first / last_date to create bins of appropriate size based on time interval.
@@ -494,6 +505,9 @@ $(function() {
                 });
                 
             });
+                    if(bins.length<=0){
+                        return;
+                    }
             //console.log(bins);
             // setting the first_date time to 00:00:00
             first_date.setHours(00);

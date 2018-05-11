@@ -53,7 +53,7 @@ module.exports.routes = {
     'GET /top_apps': 'TestController.getTopApplication', //dashboard.html
     'GET /logon_usage': 'TestController.getLogOnVSUsage',
     'GET /logon_usage_summary': 'TestController.getLogOnVSUsageSummary',//dashboard.html
-    'GET /last_update': 'TestController.getLastActivity',  //dashboard.html
+    'GET /last_update': 'TestController.getLastActivity',  //dashboard.html                    
 
     'GET /testController01': 'TestController.runTest01',
     'GET /testController02': 'TestController.runTest02'
